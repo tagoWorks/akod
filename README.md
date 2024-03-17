@@ -58,7 +58,7 @@ to hide the private key. I recommend [Hyperion](https://github.com/billythegoat3
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
 1. Copy the contents of the `decypt.py` file to the top of your code
-2. Define your URl and key
+2. Define your URL and key
    * The key needs to be the same as the key in `service.py` in order to read the license
    * The URL is your new webserver hosted on Netlify
 
