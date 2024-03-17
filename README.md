@@ -2,6 +2,7 @@
 <div align="center">
     </a>
     <br />
+    
    [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
    
    ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
