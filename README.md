@@ -1,21 +1,22 @@
-![Banner](./image.png)
+<div align="center">
+   ![Banner](./image.png)
+   
+   # Validating Licenses on Discord
+   [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
+   
+   ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
+   ![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/vlod)
+   ![GitHub](https://img.shields.io/github/license/t-a-g-o/vlod)
+   
+   *there is definitely an easier way to make a licensing service but idc*
+   
+   Validating Licenses on Discord bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLoD bot allows
+   users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
+   VLoD works by creating a new directory with the validated users email and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
+   changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just add the decypt.py contents before the main code runs, and then obfuscate your final code in order
+   to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt. VLoD is open source and I encourge you to make your own changes!
 
-# Validating Licenses on Discord
-[tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
-
-![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
-![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/vlod)
-![GitHub](https://img.shields.io/github/license/t-a-g-o/vlod)
-
-*there is definitely an easier way to make a licensing service but idc*
-
-Validating Licenses on Discord bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLoD bot allows
-users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
-VLoD works by creating a new directory with the validated users email and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
-changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just add the decypt.py contents before the main code runs, and then obfuscate your final code in order
-to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt. VLoD is open source and I encourge you to make your own changes!
-
-
+</div>
 # Getting Started with VLoD & Netlify 🚀
 
 ## Setup webserver
@@ -85,7 +86,6 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [ ] Add catches for when an invalid folder is created
 
 # License & Information 📃
-This project is published under the MIT license
-[MIT license](./LICENSE)
+This project is published under the [MIT license](./LICENSE)
 
 If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
