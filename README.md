@@ -35,7 +35,7 @@
    
 4. Create your site via GitHub
 
-5. Wait for site to deply. You should have a link like "repositoryname.netlify.app"
+5. Wait for site to deploy. You should have a link like "repositoryname.netlify.app"
 
 ## Prepare VLoD
 1. Clone the repo
