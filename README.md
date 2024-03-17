@@ -2,16 +2,12 @@
 <div align="center">
     </a>
     <br />
-    <br />
-    
    [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
-
    
    ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
    ![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/vlod)
    ![GitHub](https://img.shields.io/github/license/t-a-g-o/vlod)
 
-   
    *there is definitely an easier way to make a licensing service but idc*
    
    Validating Licenses on Discord bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLoD bot allows
