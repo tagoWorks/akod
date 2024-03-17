@@ -7,7 +7,7 @@ const fs = require('fs');
 const token = require('./config.json');
 
 client.on('ready', async () => {
-  console.log(`Bot is logged in!`);
+  console.log(`Nova is ready! Logged in as ${client.user.tag}`);
   client.user.setStatus('online');
   // Set the bot's status. types: WATCHING, PLAYING, LISTENING, STREAMING
   client.user.setActivity('license keys', { type: 'WATCHING' });
