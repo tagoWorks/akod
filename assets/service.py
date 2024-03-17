@@ -1,15 +1,21 @@
-import os, time, shutil
+import os
+import subprocess
+import time
+import shutil
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
 # Define your repository path
-repo = '/Users/username/Documents/GitHub/REPO'
+repo = '/Users/users/Documents/GitHub/repository'
 # Define your private key
-privatekey = b'TYPECUSTOMKEYHERE'
+privatekey = b'12345678901234567890123456789012'
 
+
+
+
+# ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
+key_size = 32
 registered_accounts = 'registered'
-
-
 def encrypt_file(file_path, key):
     with open(file_path, 'rb') as f:
         data = f.read()
@@ -18,6 +24,19 @@ def encrypt_file(file_path, key):
     encryptor = cipher.encryptor()
     ciphertext = encryptor.update(data) + encryptor.finalize()
     return iv + ciphertext
+
+def check_git_authentication():
+    try:
+        subprocess.run(["git", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(["git", "remote", "show", "origin"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=repo)
+        return True
+    except subprocess.CalledProcessError as e:
+        print("Error: You need to sign in to GitHub.")
+        return False
+    except FileNotFoundError:
+        print("Error: Git is not installed or cannot be found.")
+        return False
+
 def process_new_folders(new_folders):
     for folder in new_folders:
         folder_path = os.path.join(registered_accounts, folder)
@@ -36,6 +55,7 @@ def process_new_folders(new_folders):
                 print(f"Email '{folder}' registered with encrypted license data.")
             except Exception as e:
                 print(f"Error: {e}")
+
 def delete_removed_folders(existing_folders, registered_folders):
     for folder in existing_folders:
         if folder != '.git' and folder not in registered_folders:
@@ -45,6 +65,7 @@ def delete_removed_folders(existing_folders, registered_folders):
                 print(f"Account '{folder}' deleted.")
             except Exception as e:
                 print(f"Error: {e}")
+
 def commit_changes(commit_message):
     try:
         os.system(f'git -C {repo} add .')
@@ -53,11 +74,14 @@ def commit_changes(commit_message):
         print("Changes committed and pushed successfully through Git.")
     except Exception as e:
         print(f"Error: {e}")
-def monitor_folder_creation_and_deletion(registered_folder, repo_path):
+
+def monitor(registered_accounts, repo_path):
     while True:
-        existing_folders = [folder for folder in os.listdir(repo_path) if os.path.isdir(os.path.join(repo_path, folder)) and folder != '.git']
-        registered_folders = [folder for folder in os.listdir(registered_folder) if os.path.isdir(os.path.join(registered_folder, folder))]
-        process_new_folders(registered_folders)
-        delete_removed_folders(existing_folders, registered_folders)
+        if check_git_authentication():
+            existing_folders = [folder for folder in os.listdir(repo_path) if os.path.isdir(os.path.join(repo_path, folder)) and folder != '.git']
+            registered_folders = [folder for folder in os.listdir(registered_accounts) if os.path.isdir(os.path.join(registered_accounts, folder))]
+            process_new_folders(registered_folders)
+            delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
-monitor_folder_creation_and_deletion(registered_accounts, repo)
+
+monitor(registered_accounts, repo)
