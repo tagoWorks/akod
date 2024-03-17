@@ -1,5 +1,5 @@
 
-![Banner](./header.png)
+![Banner](./image.png)
 
 # Validating Licenses on Discord
 [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
