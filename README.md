@@ -53,9 +53,8 @@
    * logChannel: The channel ID where the bot will send license validation logs
     
 5. Open the `assets` folder and edit `service.py` with the required fields
-   * Put your repository URL in the URL field, not including the https://
-   * Obtain and paste your GitHub Personal Access Token (PAT)
-   * Define the repository location in the repo field
+   * Fill in the fields for username, repo name, and personal access token
+   * Generate or type your private read key and save it for later
 
 6. Input your licenses in the `license.txt` file
 

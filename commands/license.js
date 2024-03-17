@@ -27,15 +27,16 @@ exports.run = async (client, message, args) => {
     const action = args[0].toLowerCase();
 
     if (action === 'validate') {
-        if (args.length < 3) {
+        if (args.length < 1) {
             message.delete().catch(err => console.error('Error deleting message:', err));
-            const invalidCommandMessage = await message.channel.send('To validate your license please provide your key followed by the email you purchased it with.');
+            const prefix = Jsonfile.prefix;
+            const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youremail@youremail.com\``);
             setTimeout(() => {
-                invalidCommandMessage.delete().catch(err => console.error('Error deleting message:', err));
+                sentMessage.delete().catch(err => console.error('Error deleting message:', err));
             }, 3000);
             return;
         }
-
+    
         const licenseKey = args[1];
         const email = args[2];
         const userId = message.author.id;

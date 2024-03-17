@@ -2,18 +2,24 @@ import os, subprocess, time, shutil
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
-# Dont include https://
-url = 'github.com/username/licenserepo'
+# Configure the following variables to match your GitHub account and repository
 
-repo = '/Users/' + os.getlogin() + '/Documents/GitHub/licenserepo'
+username = 'github username'
+licensestorage_repo = 'github repo name'
 token = 'github personal access token'
-
-# Change private access key
+# Change your private key!
 privatekey = b'12345678901234567890123456789012'
 
 
 
+
+
+#----------------------------------------------
 # ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
+#----------------------------------------------
+
+url = f'github.com/{username}/{licensestorage_repo}'
+repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
 key_size = 32
 registered_accounts = 'registered'
 def clone(url, pat):
@@ -28,7 +34,6 @@ def clone(url, pat):
         print(f"Error: {e}")
         exit()
     print("Repository cloned successfully.")
-
 def encrypt_file(file_path, key):
     with open(file_path, 'rb') as f:
         data = f.read()
@@ -37,7 +42,6 @@ def encrypt_file(file_path, key):
     encryptor = cipher.encryptor()
     ciphertext = encryptor.update(data) + encryptor.finalize()
     return iv + ciphertext
-
 def process_new_folders(new_folders):
     for folder in new_folders:
         folder_path = os.path.join(registered_accounts, folder)
@@ -56,7 +60,6 @@ def process_new_folders(new_folders):
                 print(f"Email '{folder}' registered with encrypted license data.")
             except Exception as e:
                 print(f"Error: {e}")
-
 def delete_removed_folders(existing_folders, registered_folders):
     for folder in existing_folders:
         if folder != '.git' and folder not in registered_folders:
@@ -66,20 +69,18 @@ def delete_removed_folders(existing_folders, registered_folders):
                 print(f"Account '{folder}' deleted.")
             except Exception as e:
                 print(f"Error: {e}")
-
-def commit_changes(repo, commit_message, pat):
+def commit_changes(commit_message):
+    global token
     try:
         git_add = f'git -C {repo} add .'
         git_commit = f'git -C {repo} commit -m "{commit_message}"'
-        git_push = f'git -C {repo} push https://{pat}@github.com/{repo}'
+        git_push = 'git -C ' + repo + ' push https://' + token + '@' + url
         os.system(git_add)
         os.system(git_commit)
         os.system(git_push)
         print("Changes committed and pushed successfully through Git.")
     except Exception as e:
         print(f"Error: {e}")
-
-
 def monitor(registered_accounts, repo_path):
     while True:
         existing_folders = [folder for folder in os.listdir(repo_path) if os.path.isdir(os.path.join(repo_path, folder)) and folder != '.git']
@@ -87,7 +88,6 @@ def monitor(registered_accounts, repo_path):
         process_new_folders(registered_folders)
         delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
-
 print("\n\nWatching for changes...")
 if not os.path.exists(repo):
     clone(url, token)
