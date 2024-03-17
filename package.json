@@ -1,10 +1,10 @@
 {
-  "name": "vlon-licensing-bot",
+  "name": "vlod-licensing-bot",
   "version": "1.0.0",
   "description": "A discord bot that makes licensing easy!",
-  "main": "vlon.js",
+  "main": "vlod.js",
   "scripts": {
-    "start": "node vlon.js"
+    "start": "node vlod.js"
   },
   "nodemonConfig": {
     "ignore": [
