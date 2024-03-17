@@ -1,21 +1,21 @@
 
 ![Banner](./header.png)
 
-# Nova Licensing Validation Bot
+# Validating Licenses on Discord
 
-![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/nova)
-![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/nova)
-![GitHub](https://img.shields.io/github/license/t-a-g-o/nova)
+![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlon)
+![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/VLON)
+![GitHub](https://img.shields.io/github/license/t-a-g-o/VLON)
+
 *there is definitely an easier way to make a licensing service but idc*
-
-The Nova Licensing bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The Nova bot allows
+The VLON bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLON bot allows
 users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
-Nova works by creating a new directory with the validated users email and in it it creates the check file with the license code, Nova then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
-changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just add the `decypt.py` contents before the main code runs, and then obfuscate your final code in order
+VLON works by creating a new directory with the validated users email and in it it creates the check file with the license code, VLON then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
+changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just add the decypt.py contents before the main code runs, and then obfuscate your final code in order
 to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt.
 
 
-# Getting Started with Nova & Netlify 🚀
+# Getting Started with VLON & Netlify 🚀
 
 ## Setup webserver
 1. Create a new private GitHub repo
@@ -28,15 +28,15 @@ to hide the private key. I recommend [Hyperion](https://github.com/billythegoat3
 
 5. Wait for site to deply. You should have a link like "repositoryname.netlify.app"
 
-## Prepare Nova
+## Prepare VLON
 1. Clone the repo
    ```sh
-   git clone https://github.com/t-a-g-o/nova
+   git clone https://github.com/t-a-g-o/VLON
    ```
    
 2. CD into the directory
    ```sh
-   cd nova
+   cd VLON
    ```
 3. Download required modules by running the provied `GetReqs.bat` file
    
