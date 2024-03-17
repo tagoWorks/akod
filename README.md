@@ -1,4 +1,3 @@
-
 ![Banner](./image.png)
 
 # Validating Licenses on Discord
@@ -14,7 +13,7 @@ Validating Licenses on Discord bot is a user license validation tool coded in ja
 users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
 VLoD works by creating a new directory with the validated users email and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
 changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just add the decypt.py contents before the main code runs, and then obfuscate your final code in order
-to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt.
+to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt. VLoD is open source and I encourge you to make your own changes!
 
 
 # Getting Started with VLoD & Netlify 🚀
@@ -64,15 +63,17 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 
 # Discord Bot Usage 🤖
 ## Member usage
-Users in your Discord server can validate their licenses by running the command "!license validate LICENSE-KEY-EXAMPLE my@email.com" where the ! is your set prefix in the `config.js` file.
+Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY EMAIL" where the ! is your set prefix in the `config.js` file.
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fruad. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
 
 ## Owner usage
 As the owner, you can remove users cooldowns, add license keys, and deactive emails that are registered to a license key
 *the following examples uses the prefix ! but you set your custom prefix in `config.js`*
-* !license removecooldown <USERID>
-* !license remove <EMAILREGISTERED>
-* !license keyadd <LICENSEKEY>
+* !license removecooldown USERID
+* !license remove EMAILREGISTERED
+* !license keyadd LICENSEKEY
+
+**Note:**
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
 
 # Roadmap 🛣️
@@ -80,6 +81,8 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [x] Rename project (Nova -> VLoD)
 - [ ] Expand on languages to license
 - [ ] Auto save login in decypt.py
+- [ ] Add checks for invalid emails
+- [ ] Add catches for when an invalid folder is created
 
 # License & Information 📃
 This project is published under the MIT license
