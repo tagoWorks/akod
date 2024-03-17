@@ -15,9 +15,9 @@ changes. Your GitHub repository will be hosted on Netlify in order to have the f
 to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt.
 
 
-## Getting Started with Nova & Netlify 🚀
+# Getting Started with Nova & Netlify 🚀
 
-# Setup webserver
+## Setup webserver
 1. Create a new private GitHub repo
    
 2. Add a `index.html` file with any content (just so the site can deploy)
@@ -28,7 +28,7 @@ to hide the private key. I recommend [Hyperion](https://github.com/billythegoat3
 
 5. Wait for site to deply. You should have a link like "repositoryname.netlify.app"
 
-# Prepare Nova
+## Prepare Nova
 1. Clone the repo
    ```sh
    git clone https://github.com/t-a-g-o/nova
