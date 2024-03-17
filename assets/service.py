@@ -25,18 +25,6 @@ def encrypt_file(file_path, key):
     ciphertext = encryptor.update(data) + encryptor.finalize()
     return iv + ciphertext
 
-def check_git_authentication():
-    try:
-        subprocess.run(["git", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        subprocess.run(["git", "remote", "show", "origin"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=repo)
-        return True
-    except subprocess.CalledProcessError as e:
-        print("Error: You need to sign in to GitHub.")
-        return False
-    except FileNotFoundError:
-        print("Error: Git is not installed or cannot be found.")
-        return False
-
 def process_new_folders(new_folders):
     for folder in new_folders:
         folder_path = os.path.join(registered_accounts, folder)
@@ -77,11 +65,10 @@ def commit_changes(commit_message):
 
 def monitor(registered_accounts, repo_path):
     while True:
-        if check_git_authentication():
-            existing_folders = [folder for folder in os.listdir(repo_path) if os.path.isdir(os.path.join(repo_path, folder)) and folder != '.git']
-            registered_folders = [folder for folder in os.listdir(registered_accounts) if os.path.isdir(os.path.join(registered_accounts, folder))]
-            process_new_folders(registered_folders)
-            delete_removed_folders(existing_folders, registered_folders)
+        existing_folders = [folder for folder in os.listdir(repo_path) if os.path.isdir(os.path.join(repo_path, folder)) and folder != '.git']
+        registered_folders = [folder for folder in os.listdir(registered_accounts) if os.path.isdir(os.path.join(registered_accounts, folder))]
+        process_new_folders(registered_folders)
+        delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
 
 print ("\n\nWatching for changes...")

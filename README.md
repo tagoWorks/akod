@@ -83,10 +83,11 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 # Roadmap 🛣️
 - [x] Create decypt.py
 - [x] Rename project (Nova -> VLoD)
-- [ ] Expand on languages to license
+- [ ] Expand on coding languages to license/secure
 - [ ] Auto save login in decypt.py
 - [ ] Add checks for invalid emails
 - [ ] Add catches for when an invalid folder is created
+- [ ] Create a Git sign-in check before service runs
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
