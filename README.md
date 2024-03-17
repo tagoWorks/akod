@@ -2,7 +2,7 @@
     <img src="https://github.com/t-a-g-o/vlod/blob/779003ed8c6e23a2f0f9056657dda9d0758a60ff/image.png">
 
 
-   [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
+   \n\n [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
 
    
    ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
