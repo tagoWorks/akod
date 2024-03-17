@@ -84,4 +84,5 @@ def monitor(registered_accounts, repo_path):
             delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
 
+print ("\n\nWatching for changes...")
 monitor(registered_accounts, repo)

@@ -1,10 +1,10 @@
 {
-  "name": "nova-licensing-bot",
+  "name": "vlon-licensing-bot",
   "version": "1.0.0",
   "description": "A discord bot that makes licensing easy!",
-  "main": "nova.js",
+  "main": "vlon.js",
   "scripts": {
-    "start": "node nova.js"
+    "start": "node vlon.js"
   },
   "nodemonConfig": {
     "ignore": [
