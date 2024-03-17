@@ -53,9 +53,10 @@
    * logChannel: The channel ID where the bot will send license validation logs
     
 5. Open the `assets` folder and edit `service.py` with the required fields
-   * Input your local repository path for "repo="
-   * Define your static private key. This key is used to decypt and validate licenses on the user end
-    
+   * Put your repository URL in the URL field, not including the https://
+   * Obtain and paste your GitHub Personal Access Token (PAT)
+   * Define the repository location in the repo field
+
 6. Input your licenses in the `license.txt` file
 
 # Implement VLoD in your code 💻
@@ -83,11 +84,10 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 # Roadmap 🛣️
 - [x] Create decypt.py
 - [x] Rename project (Nova -> VLoD)
-- [ ] Expand on coding languages to license/secure
+- [ ] Expand on languages to license
 - [ ] Auto save login in decypt.py
 - [ ] Add checks for invalid emails
 - [ ] Add catches for when an invalid folder is created
-- [ ] Create a Git sign-in check before service runs
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)

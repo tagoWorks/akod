@@ -1,21 +1,34 @@
-import os
-import subprocess
-import time
-import shutil
+import os, subprocess, time, shutil
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
 
-# Define your repository path
-repo = '/Users/users/Documents/GitHub/repository'
-# Define your private key
-privatekey = b'12345678901234567890123456789012'
+# Dont include https://
+url = 'github.com/username/licenserepo'
 
+repo = '/Users/' + os.getlogin() + '/Documents/GitHub/licenserepo'
+token = 'github personal access token'
+
+# Change private access key
+privatekey = b'12345678901234567890123456789012'
 
 
 
 # ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
 key_size = 32
 registered_accounts = 'registered'
+def clone(url, pat):
+    git_command = ['git', 'clone', f'https://{pat}@{url}']
+    try:
+        if not os.path.exists('/Users/' + os.getlogin() + '/Documents/GitHub/'):
+            os.makedirs('/Users/' + os.getlogin() + '/Documents/GitHub/')
+        os.chdir('/Users/' + os.getlogin() + '/Documents/GitHub/')
+        output = subprocess.check_output(git_command)
+        os.chdir('.')
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+        exit()
+    print("Repository cloned successfully.")
+
 def encrypt_file(file_path, key):
     with open(file_path, 'rb') as f:
         data = f.read()
@@ -54,14 +67,18 @@ def delete_removed_folders(existing_folders, registered_folders):
             except Exception as e:
                 print(f"Error: {e}")
 
-def commit_changes(commit_message):
+def commit_changes(repo, commit_message, pat):
     try:
-        os.system(f'git -C {repo} add .')
-        os.system(f'git -C {repo} commit -m "{commit_message}"')
-        os.system(f'git -C {repo} push')
+        git_add = f'git -C {repo} add .'
+        git_commit = f'git -C {repo} commit -m "{commit_message}"'
+        git_push = f'git -C {repo} push https://{pat}@github.com/{repo}'
+        os.system(git_add)
+        os.system(git_commit)
+        os.system(git_push)
         print("Changes committed and pushed successfully through Git.")
     except Exception as e:
         print(f"Error: {e}")
+
 
 def monitor(registered_accounts, repo_path):
     while True:
@@ -71,5 +88,7 @@ def monitor(registered_accounts, repo_path):
         delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
 
-print ("\n\nWatching for changes...")
+print("\n\nWatching for changes...")
+if not os.path.exists(repo):
+    clone(url, token)
 monitor(registered_accounts, repo)
