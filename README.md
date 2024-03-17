@@ -61,6 +61,20 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 2. Define your URl and key
    * The key needs to be the same as the key in `service.py` in order to read the license
    * The URL is your new webserver hosted on Netlify
+
+# Discord Bot Usage 🤖
+## Member usage
+Users in your Discord server can validate their licenses by running the command "!license validate LICENSE-KEY-EXAMPLE my@email.com" where the ! is your set prefix in the `config.js` file.
+Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fruad. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
+
+## Owner usage
+As the owner, you can remove users cooldowns, add license keys, and deactive emails that are registered to a license key
+*the following examples uses the prefix ! but you set your custom prefix in `config.js`*
+* !license removecooldown <USERID>
+* !license remove <EMAILREGISTERED>
+* !license keyadd <LICENSEKEY>
+To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
+
 # Roadmap 🛣️
 - [x] Create decypt.py
 - [x] Rename project (Nova -> VLoD)
