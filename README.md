@@ -60,8 +60,12 @@
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Import the Validating Licenses on Discord Validating Packing package
+1. Download the [Validating Licenses on Discord Validating Package](https://github.com/t-a-g-o/vlod/tree/vlodvp)
    ```sh
+   pip install VLoDVP
+   ```
+1. Import the package to your main code
+   ```py
    import VLoDVP
    ```
 2. Define your private key and your new netlify webserver
@@ -72,12 +76,12 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 3. Code a way for the user to input their email and license
 
    *emailvar and licensekeyvar can be anything*
-   ```sh
+   ```py
    emailvar = input("Enter email: ")
    licensekeyvar = input("Enter key: ")
    ```
 4. Check if the account exists and the license is active on your webserver
-   ```sh
+   ```py
    if VLoDVP.validate(emailvar, licensekeyvar) == False:
       print("Invalid email or key")
    else:
