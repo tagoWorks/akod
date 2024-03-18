@@ -71,7 +71,7 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    ```
 3. Code a way for the user to input their email and license
 
-   *email var and licensekeyvar can be named anything*
+   *emailvar and licensekeyvar can be anything*
    ```sh
    emailvar = input("Enter email: ")
    licensekeyvar = input("Enter key: ")
