@@ -58,7 +58,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    * logChannel: The channel ID where the bot will send license validation logs
    * GITUSERNAME: Your GitHub account username
    * GITSTORAGEREPO: The repository where the accounts and active licenses will be stored
-   * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository
+   * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (make sure to give repo scopes)
 5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `key.txt` file
    * It is very important to save this key, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
 
