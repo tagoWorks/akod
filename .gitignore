@@ -1,11 +1,1 @@
-<<<<<<< HEAD
-
-setup.py
-MANIFEST.in
-BuildandPublish.bat
-/VLoDVP.egg-info
-/dist
-=======
 node_modules
-banner
->>>>>>> parent of eae7c73 (create voldvp module)
