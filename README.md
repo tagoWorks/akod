@@ -103,12 +103,12 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
 ## Member usage
-Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY EMAIL" where the ! is your set prefix in the `config.js` file.
+Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY EMAIL" where the ! is your set prefix in the `config.json` file.
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fruad. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
 
 ## Owner usage
 As the owner, you can remove users cooldowns, add license keys, and deactive emails that are registered to a license key
-*the following examples uses the prefix ! but you set your custom prefix in `config.js`*
+*the following examples uses the prefix ! but you set your custom prefix in `config.json`*
 * !license removecooldown USERID
 * !license remove EMAILREGISTERED
 * !license keyadd LICENSEKEY
