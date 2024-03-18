@@ -72,8 +72,8 @@ def process_new_folders(new_folders):
                     encrypted_file_path = os.path.join(target_folder_path, file)
                     with open(encrypted_file_path, 'wb') as f:
                         f.write(encrypted_data)
-                commit_changes(f"Registered account email '{folder}' with encrypted license data.")
-                print(f"Email '{folder}' registered with encrypted license data.")
+                commit_changes(f"Registered account '{folder}' with encrypted license data.")
+                print(f"'{folder}' registered with encrypted license data.")
             except Exception as e:
                 print(f"Error: {e}")
 def delete_removed_folders(existing_folders, registered_folders):

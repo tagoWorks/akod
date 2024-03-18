@@ -2,10 +2,10 @@ import VLoDVP
 VLoDVP.setkey(b'12345678901234567890123456789012')
 VLoDVP.setlink('https://yourlink.netlify.app/')
 
-emailvar = input("Enter email: ")
+uservar = input("Enter username: ")
 licensekeyvar = input("Enter key: ")
 
-if VLoDVP.validate(emailvar, licensekeyvar) == False:
-    print("Invalid email or key")
+if VLoDVP.validate(uservar, licensekeyvar) == False:
+    print("Invalid username or key")
 else:
-    print("Valid email and key")
+    print("Valid username and key")

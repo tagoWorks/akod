@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
     if (args.length < 1) {
         message.delete().catch(err => console.error('Error deleting message:', err));
         const prefix = Jsonfile.prefix;
-        const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youremail@youremail.com\``);
+        const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youraccountname\``);
         setTimeout(() => {
         sentMessage.delete().catch(err => console.error('Error deleting message:', err));
         }, 3000);
@@ -28,14 +28,14 @@ exports.run = async (client, message, args) => {
         if (args.length < 1) {
             message.delete().catch(err => console.error('Error deleting message:', err));
             const prefix = Jsonfile.prefix;
-            const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youremail@youremail.com\``);
+            const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youraccountname\``);
             setTimeout(() => {
                 sentMessage.delete().catch(err => console.error('Error deleting message:', err));
             }, 3000);
             return;
         }
         const licenseKey = args[1];
-        const email = args[2];
+        const accname = args[2];
         const userId = message.author.id;
         const lastUsage = cooldowns[userId];
         // User cooldown: 30 days, always in milliseconds
@@ -70,13 +70,13 @@ exports.run = async (client, message, args) => {
                         console.error('Error updating license file:', err);
                         return message.channel.send('Error updating license file. Please try again later.');
                     }
-                    const emailFolder = path.join(assetsFolderPath, 'registered', email); 
-                    fs.mkdir(emailFolder, { recursive: true }, (err) => {
+                    const accFolder = path.join(assetsFolderPath, 'registered', accname); 
+                    fs.mkdir(accFolder, { recursive: true }, (err) => {
                         if (err) {
-                            console.error('Error creating email folder:', err);
-                            return message.channel.send('Error creating email folder. Please try again later.');
+                            console.error('Error creating account folder:', err);
+                            return message.channel.send('Error creating account folder. Please try again later.');
                         }
-                        const checkFilePath = path.join(emailFolder, 'check');
+                        const checkFilePath = path.join(accFolder, 'check');
                         fs.writeFile(checkFilePath, licenseKey, (err) => {
                             if (err) {
                                 console.error('Error writing to check file:', err);
@@ -87,7 +87,7 @@ exports.run = async (client, message, args) => {
                             const logChannelId = config.logChannel;
                             const targetChannel = client.channels.cache.get(logChannelId);                            
                             if (targetChannel) {
-                                targetChannel.send(`License key: ${licenseKey}\nEmail: ${email}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
+                                targetChannel.send(`License key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
                             } else {
                                 console.error('Error: Target channel not found.');
                             }
@@ -122,19 +122,19 @@ exports.run = async (client, message, args) => {
             return;
         }
         if (args.length < 2) {
-            return message.channel.send('Please provide an email address to remove the license.');
+            return message.channel.send('Please provide an account to remove the license.');
         }
-        const emailToRemove = args[1];
+        const accToRemove = args[1];
     
         // Path to the assets folder from the root
         const assetsFolderPath = path.join(__dirname, '..', 'assets', 'registered');
-        const emailFolder = path.join(assetsFolderPath, emailToRemove);
-        fs.rmdir(emailFolder, { recursive: true }, (err) => {
+        const accFolder = path.join(assetsFolderPath, accToRemove);
+        fs.rmdir(accFolder, { recursive: true }, (err) => {
             if (err) {
-                console.error('Error removing email folder:', err);
-                return message.channel.send('Error removing email folder. Please try again later.');
+                console.error('Error removing account folder:', err);
+                return message.channel.send('Error removing account folder. Please try again later.');
             }
-            return message.channel.send(`License removed successfully for email ${emailToRemove}.`);
+            return message.channel.send(`License removed successfully for ${accToRemove}.`);
         });
     }
      else if (action === 'removecooldown') {

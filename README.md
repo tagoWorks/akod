@@ -13,7 +13,7 @@
    
    Validating Licenses on Discord bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLoD bot allows
    users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
-   VLoD works by creating a new directory with the validated users email and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
+   VLoD works by creating a new directory with the chosen validated account name and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
    changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just import the [VLoDVP](https://github.com/t-a-g-o/vlod/tree/vlodvp) package and then obfuscate your final code in order
    to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt. VLoD is open source and I encourge you to make your own changes!
 
@@ -82,17 +82,17 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    VLoDVP.setkey('12345678901234567890123456789012')
    VLoDVP.setlink('https://yourlink.netlify.app/')
    ```
-3. Code a way for the user to input their email and license
+3. Code a way for the user to input their username and license
 
-   *emailvar and licensekeyvar can be anything*
+   *uservar and licensekeyvar can be anything*
    ```py
-   emailvar = input("Enter email: ")
+   uservar = input("Enter username: ")
    licensekeyvar = input("Enter key: ")
    ```
 4. Check if the account exists and the license is active on your webserver
    ```py
-   if VLoDVP.validate(emailvar, licensekeyvar) == False:
-      print("Invalid email or key")
+   if VLoDVP.validate(uservar, licensekeyvar) == False:
+      print("Invalid username or key")
    else:
       # Run your main code here
    ```
@@ -103,14 +103,14 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
 ## Member usage
-Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY EMAIL" where the ! is your set prefix in the `config.json` file.
+Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY ACCOUNTNAME" where the ! is your set prefix in the `config.json` file.
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fruad. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
 
 ## Owner usage
-As the owner, you can remove users cooldowns, add license keys, and deactive emails that are registered to a license key
+As the owner, you can remove users cooldowns, add license keys, and deactive accounts that are registered to a license key
 *the following examples uses the prefix ! but you set your custom prefix in `config.json`*
 * !license removecooldown USERID
-* !license remove EMAILREGISTERED
+* !license remove ACCOUNTNAME
 * !license keyadd LICENSEKEY
 
 **Note:**
@@ -121,7 +121,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [x] Create VLoDVP package
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
-- [ ] Add checks for invalid emails
+- [ ] Add checks for invalid account names
 - [ ] Add catches for when an invalid folder is created
 - [ ] Convert bot commands to discord slash applications
 
