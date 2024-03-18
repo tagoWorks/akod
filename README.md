@@ -54,7 +54,7 @@
     
 5. Open the `assets` folder and edit `service.py` with the required fields
    * Fill in the fields for username, repo name, and personal access token
-   * Create your private read key. Only characters *ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890~!@#$%^&*()_+'*
+   * Create your private read key. Only characters ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890~!@#$%^&*()_+'
 
 6. Input your licenses in the `license.txt` file
 
