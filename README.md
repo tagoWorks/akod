@@ -21,7 +21,7 @@
 
 # Get Started with VLoD 🚀
 
-https://www.youtube.com/watch?v=ZGfnvUzBGG8
+![Video](https://www.youtube.com/watch?v=ZGfnvUzBGG8)
 
 
 # VLoD & Netlify Setup ⌨️
