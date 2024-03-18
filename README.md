@@ -15,7 +15,7 @@
    users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services costed money eventually.
    VLoD works by creating a new directory with the chosen validated account name and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
    changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just import the [VLoDVP](https://github.com/t-a-g-o/vlod/tree/vlodvp) package and then obfuscate your final code in order
-   to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decypt. VLoD is open source and I encourge you to make your own changes!
+   to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decrypt. VLoD is open source and I encourge you to make your own changes!
 
 </div>
 
