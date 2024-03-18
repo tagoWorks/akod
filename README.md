@@ -114,6 +114,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [ ] Auto save login in VLoDVP
 - [ ] Add checks for invalid emails
 - [ ] Add catches for when an invalid folder is created
+- [ ] Convert bot commands to discord slash applications
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)

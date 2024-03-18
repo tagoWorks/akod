@@ -14,18 +14,16 @@ exports.run = async (client, message, args) => {
         }, 3000);
         return;
     }
-
     if (args.length < 1) {
         message.delete().catch(err => console.error('Error deleting message:', err));
-        const sentMessage = await message.channel.send('To use this command correctly, do `=license validate YOUR-LICENSE-KEY youremail@youremail.com`');
+        const prefix = Jsonfile.prefix;
+        const sentMessage = await message.channel.send(`To use this command correctly, do \`${prefix}license validate YOUR-LICENSE-KEY youremail@youremail.com\``);
         setTimeout(() => {
-            sentMessage.delete().catch(err => console.error('Error deleting message:', err));
+        sentMessage.delete().catch(err => console.error('Error deleting message:', err));
         }, 3000);
         return;
     }
-
     const action = args[0].toLowerCase();
-
     if (action === 'validate') {
         if (args.length < 1) {
             message.delete().catch(err => console.error('Error deleting message:', err));
@@ -36,11 +34,9 @@ exports.run = async (client, message, args) => {
             }, 3000);
             return;
         }
-    
         const licenseKey = args[1];
         const email = args[2];
         const userId = message.author.id;
-
         const lastUsage = cooldowns[userId];
         // User cooldown: 30 days, always in milliseconds
         if (lastUsage && Date.now() - lastUsage < 30 * 24 * 60 * 60 * 1000) {
@@ -52,7 +48,6 @@ exports.run = async (client, message, args) => {
             }, 3000);
             return;
         }
-
         cooldowns[userId] = Date.now();
 
         // Path to the assets folder from the root
@@ -66,9 +61,7 @@ exports.run = async (client, message, args) => {
                 console.error('Error reading license file:', err);
                 return message.channel.send('Error reading license file. Please try again later.');
             }
-
             let licenses = data.split('\n');
-
             const index = licenses.findIndex(key => key.trim() === licenseKey);
             if (index !== -1) {
                 licenses.splice(index, 1);
@@ -89,7 +82,6 @@ exports.run = async (client, message, args) => {
                                 console.error('Error writing to check file:', err);
                                 return message.channel.send('Error writing to check file. Please try again later.');
                             }
-
                             const remainingLicenses = licenses.length;
                             let config = require('../config.json');
                             const logChannelId = config.logChannel;
@@ -99,7 +91,6 @@ exports.run = async (client, message, args) => {
                             } else {
                                 console.error('Error: Target channel not found.');
                             }
-
                             message.channel.send(`<@${userId}> Your license was successfully validated! Please wait about 15-20 seconds for the servers to update before use.`)
                                 .then(userMessage => {
                                     message.delete().catch(err => console.error('Error deleting message:', err));
@@ -130,23 +121,19 @@ exports.run = async (client, message, args) => {
             message.delete().catch(err => console.error('Error deleting message:', err));
             return;
         }
-    
         if (args.length < 2) {
             return message.channel.send('Please provide an email address to remove the license.');
         }
-    
         const emailToRemove = args[1];
     
         // Path to the assets folder from the root
         const assetsFolderPath = path.join(__dirname, '..', 'assets', 'registered');
         const emailFolder = path.join(assetsFolderPath, emailToRemove);
-    
         fs.rmdir(emailFolder, { recursive: true }, (err) => {
             if (err) {
                 console.error('Error removing email folder:', err);
                 return message.channel.send('Error removing email folder. Please try again later.');
             }
-    
             return message.channel.send(`License removed successfully for email ${emailToRemove}.`);
         });
     }
@@ -156,18 +143,14 @@ exports.run = async (client, message, args) => {
 		message.delete().catch(err => console.error('Error deleting message:', err));
 		return;
     }
-
     if (args.length < 2) {
       return message.channel.send('Please provide a user ID to remove cooldown.');
     }
-
     const targetUserId = args[1];
     if (!cooldowns[targetUserId]) {
       return message.channel.send('There is no cooldown set for the provided user ID.');
     }
-
     delete cooldowns[targetUserId];
-
     return message.channel.send(`Cooldown removed successfully for user ID ${targetUserId}.`);
   } else if (action === 'keyadd') {
     // Only the owner can use this subcommand
@@ -175,14 +158,11 @@ exports.run = async (client, message, args) => {
 		message.delete().catch(err => console.error('Error deleting message:', err));
 		return;
     }
-
     if (args.length < 2) {
       return message.channel.send('Please provide a license key to add.');
     }
-
     const licenseKeyToAdd = args[1];
     const licenseFilePath = path.join(__dirname, '..', 'assets', 'license.txt');
-
     fs.appendFile(licenseFilePath, `\n${licenseKeyToAdd}`, (err) => {
       if (err) {
         console.error('Error adding license key:', err);
