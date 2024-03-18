@@ -70,12 +70,13 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    VLoDVP.setlink('https://yourlink.netlify.app/')
    ```
 3. Code a way for the user to input their email and license
+
    *email var and licensekeyvar can be named anything*
    ```sh
    emailvar = input("Enter email: ")
    licensekeyvar = input("Enter key: ")
    ```
-4. Check if the account exists and the license is active
+4. Check if the account exists and the license is active on your webserver
    ```sh
    if VLoDVP.validate(emailvar, licensekeyvar) == False:
       print("Invalid email or key")
