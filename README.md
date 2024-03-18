@@ -20,7 +20,7 @@
 </div>
 
 # Get Started with VLoD 🚀
-
+### Watch the YouTube tutorial I made to get start with VLoD!
 [![YouTube Tutorial](https://img.youtube.com/vi/ZGfnvUzBGG8/0.jpg)](https://youtube.com/watch?v=ZGfnvUzBGG8)
 
 # VLoD & Netlify Setup ⌨️
