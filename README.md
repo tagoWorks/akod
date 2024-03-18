@@ -117,8 +117,8 @@ As the owner, you can remove users cooldowns, add license keys, and deactive ema
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
 
 # Roadmap 🛣️
-- [x] Create decypt.py
 - [x] Rename project (Nova -> VLoD)
+- [x] Create VLoDVP package
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
 - [ ] Add checks for invalid emails
