@@ -19,8 +19,14 @@
 
 </div>
 
+# Get Started with VLoD 🚀
 
-# Getting Started with VLoD & Netlify 🚀
+https://www.youtube.com/watch?v=ZGfnvUzBGG8
+
+
+# VLoD & Netlify Setup ⌨️
+
+Here, there is a step by step instructions on how to setup and use VLoD, but I recommend watching the video above
 
 ## Setup webserver
 1. Create a new private GitHub repo
