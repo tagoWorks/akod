@@ -1,5 +1,5 @@
 import VLoDVP
-VLoDVP.setkey(b'12345678901234567890123456789012')
+VLoDVP.setkey('12345678901234567890123456789012')
 VLoDVP.setlink('https://yourlink.netlify.app/')
 
 uservar = input("Enter username: ")
