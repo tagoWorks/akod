@@ -83,6 +83,10 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    else:
       # Run your main code here
    ```
+5. Obfuscate your code (optional)
+ In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced and I personally use it for some of my code before.
+
+
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
 ## Member usage
