@@ -1,7 +1,10 @@
 {
-  "token": "YOUR_TOKEN_HERE",
+  "token": "DISCORD_BOT_TOKEN",
   "prefix": "!",
-  "owner": "",
-  "onlySendIn": "",
-  "logChannel": ""
+  "owner": " ",
+  "onlySendIn": " ",
+  "logChannel": " ",
+  "GITUSERNAME": " ",
+  "GITSTORAGEREPO": " ",
+  "GITPAT": "GITHUB PERSONAL ACCESS TOKEN"
 }

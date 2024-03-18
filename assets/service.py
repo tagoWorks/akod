@@ -1,27 +1,43 @@
-import os, subprocess, time, shutil
+import os, subprocess, time, shutil, string
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-
-# Configure the following variables to match your GitHub account and repository
-
-username = 'github username'
-licensestorage_repo = 'github repo name'
-token = 'github personal access token'
-# Change your private key!
-privatekey = b'12345678901234567890123456789012'
-
-
-
-
+import secrets
+import json
 
 #----------------------------------------------
 # ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
 #----------------------------------------------
 
+
+
+def load_config():
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    config_file_path = os.path.join(parent_dir, 'config.json')
+    with open(config_file_path, 'r') as config_file:
+        config = json.load(config_file)
+    return config
+config = load_config()
+username = config.get('GITUSERNAME', 'not_found')
+licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
+token = config.get('GITPAT', 'not_found')
 url = f'github.com/{username}/{licensestorage_repo}'
 repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
 key_size = 32
 registered_accounts = 'registered'
+if not os.path.exists('key.txt'):
+    characters = string.ascii_letters + string.digits
+    key = ''.join(secrets.choice(characters) for _ in range(32))
+    file_path = 'key.txt'
+    with open(file_path, 'w') as key_file:
+        key_file.write(key)
+    print(f"Generated 256-bit AES key and saved to '{file_path}'")
+    with open(file_path, 'r') as key_file:
+        privatekey = key_file.read().encode()
+with open('key.txt', 'rb') as key_file:
+    privatekey = key_file.read()
+if not os.path.exists(registered_accounts):
+    os.makedirs(registered_accounts)
 def clone(url, pat):
     git_command = ['git', 'clone', f'https://{pat}@{url}']
     try:

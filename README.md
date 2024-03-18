@@ -51,12 +51,21 @@
    * owner: The owner's user ID (will be allowed to add licenses, remove cooldowns, and delete validated accounts)
    * onlySendIn: The channel ID's where the bot will be allowed to resond
    * logChannel: The channel ID where the bot will send license validation logs
-    
-5. Open the `assets` folder and edit `service.py` with the required fields
-   * Fill in the fields for username, repo name, and personal access token
-   * Create your private read key. Only characters ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890~!@#$%^&*()_+'
+   * GITUSERNAME: Your GitHub account username
+   * GITSTORAGEREPO: The repository where the accounts and active licenses will be stored
+   * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository
+5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `key.txt` file
+   * It is very important to save this key, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
 
-6. Input your licenses in the `license.txt` file
+6. Input your custom licenses in the `license.txt` file
+   * Remember to press ENTER after each license to be sure that the bot can write to the file without issues
+   * When adding multiple licenses remember to press ENTER on the last string
+   ```txt
+   ABCD-EFGH-IJKL-MNOP
+   ABCD-EFGH-IJKL-MNOP
+   ABCD-EFGH-IJKL-MNOP
+
+   ```
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
@@ -68,7 +77,7 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    ```py
    import VLoDVP
    ```
-2. Define your private key and your new netlify webserver
+2. Define your private key (`assets/key.txt`) and your new netlify webserver
    ```sh
    VLoDVP.setkey('12345678901234567890123456789012')
    VLoDVP.setlink('https://yourlink.netlify.app/')
