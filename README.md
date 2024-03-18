@@ -60,11 +60,29 @@
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Copy the contents of the `decypt.py` file to the top of your code
-2. Define your URL and key
-   * The key needs to be the same as the key in `service.py` in order to read the license
-   * The URL is your new webserver hosted on Netlify
-
+1. Import the Validating Licenses on Discord Validating Packing package
+   ```sh
+   import VLoDVP
+   ```
+2. Define your private key and your new netlify webserver
+   ```sh
+   VLoDVP.setkey('12345678901234567890123456789012')
+   VLoDVP.setlink('https://yourlink.netlify.app/')
+   ```
+3. Code a way for the user to input their email and license
+   *email var and licensekeyvar can be named anything*
+   ```sh
+   emailvar = input("Enter email: ")
+   licensekeyvar = input("Enter key: ")
+   ```
+4. Check if the account exists and the license is active
+   ```sh
+   if VLoDVP.validate(emailvar, licensekeyvar) == False:
+      print("Invalid email or key")
+   else:
+      # Run your main code here
+   ```
+If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
 ## Member usage
 Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY EMAIL" where the ! is your set prefix in the `config.js` file.
