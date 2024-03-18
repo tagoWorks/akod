@@ -129,6 +129,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [ ] Add checks for invalid account names
 - [ ] Add catches for when an invalid folder is created
 - [ ] Convert bot commands to discord slash applications
+- [ ] Recode validate function
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
