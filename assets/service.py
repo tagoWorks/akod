@@ -22,7 +22,7 @@ username = config.get('GITUSERNAME', 'not_found')
 licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
 token = config.get('GITPAT', 'not_found')
 url = f'github.com/{username}/{licensestorage_repo}'
-repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
+repo = '.'
 key_size = 32
 registered_accounts = 'registered'
 if not os.path.exists('key.txt'):
