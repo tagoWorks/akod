@@ -1,2 +1,6 @@
-node_modules
-banner
+
+setup.py
+MANIFEST.in
+BuildandPublish.bat
+/VLoDVP.egg-info
+/dist

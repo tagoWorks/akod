@@ -1,2 +1,0 @@
-python service.py
-pause
