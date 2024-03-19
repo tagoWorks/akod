@@ -124,6 +124,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 # Roadmap 🛣️
 - [x] Rename project (Nova -> VLoD)
 - [x] Create VLoDVP package
+- [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
 - [ ] Add checks for invalid account names
