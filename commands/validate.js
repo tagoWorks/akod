@@ -36,6 +36,15 @@ module.exports = {
     }
     cooldowns[userId] = Date.now();
 
+    if (!/^[a-zA-Z0-9]+$/.test(accname) || /\s/.test(accname)) {
+      await interaction.reply({
+        content: `Invalid account name. Account name should only contain letters and numbers and should not contain any spaces.`,
+        ephemeral: true,
+      });
+      delete cooldowns[userId];
+      return;
+    }
+
     // Path to the assets folder from the root
     const assetsFolderPath = path.join(__dirname, '..', 'assets');
 
@@ -50,34 +59,46 @@ module.exports = {
       let licenses = data.split('\n');
       const index = licenses.findIndex(key => key.trim() === licenseKey);
       if (index !== -1) {
-        licenses.splice(index, 1);
-        fs.writeFile(licenseFilePath, licenses.join('\n'), async (err) => {
-          if (err) {
-            console.error('Error updating license file:', err);
-            return interaction.reply({ content: 'Error updating license file. Please try again later.', ephemeral: true });
+        const accFolder = path.join(assetsFolderPath, 'registered', accname);
+        fs.access(accFolder, fs.constants.F_OK, async (err) => {
+          if (!err) {
+            await interaction.reply({
+              content: `Sorry but "${accname}" is in use. Please rerun the validate command with a different account name.`,
+              ephemeral: true,
+            });
+            delete cooldowns[userId];
+            return;
           }
-          const accFolder = path.join(assetsFolderPath, 'registered', accname);
-          fs.mkdir(accFolder, { recursive: true }, (err) => {
+
+          licenses.splice(index, 1);
+          fs.writeFile(licenseFilePath, licenses.join('\n'), async (err) => {
             if (err) {
-              console.error('Error creating account folder:', err);
-              return interaction.reply({ content: 'Error creating account folder. Please try again later.', ephemeral: true });
+              console.error('Error updating license file:', err);
+              return interaction.reply({ content: 'Error updating license file. Please try again later.', ephemeral: true });
             }
-            const checkFilePath = path.join(accFolder, 'check');
-            fs.writeFile(checkFilePath, licenseKey, (err) => {
+
+            fs.mkdir(accFolder, { recursive: true }, (err) => {
               if (err) {
-                console.error('Error writing to check file:', err);
-                return interaction.reply({ content: 'Error writing to check file. Please try again later.', ephemeral: true });
+                console.error('Error creating account folder:', err);
+                return interaction.reply({ content: 'Error creating account folder. Please try again later.', ephemeral: true });
               }
-              const remainingLicenses = licenses.length;
-              let config = require('../config.json');
-              const logChannelId = config.logChannel;
-              const targetChannel = interaction.client.channels.cache.get(logChannelId);
-              if (targetChannel) {
-                targetChannel.send(`License key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
-              } else {
-                console.error('Error: Target channel not found.');
-              }
-              interaction.reply({ content: `Your license was successfully validated! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+              const checkFilePath = path.join(accFolder, 'check');
+              fs.writeFile(checkFilePath, licenseKey, (err) => {
+                if (err) {
+                  console.error('Error writing to check file:', err);
+                  return interaction.reply({ content: 'Error writing to check file. Please try again later.', ephemeral: true });
+                }
+                const remainingLicenses = licenses.length;
+                let config = require('../config.json');
+                const logChannelId = config.logChannel;
+                const targetChannel = interaction.client.channels.cache.get(logChannelId);
+                if (targetChannel) {
+                  targetChannel.send(`License key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
+                } else {
+                  console.error('Error: Target channel not found.');
+                }
+                interaction.reply({ content: `Your license was successfully validated! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+              });
             });
           });
         });

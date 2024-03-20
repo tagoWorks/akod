@@ -1,10 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const fs = require('fs');
 const path = require('path');
 const { cooldowns } = require('./shared');
 const configPath = path.resolve(__dirname, '..', 'config.json');
 const { ownerID } = require(configPath);
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('removecooldown')
@@ -20,7 +18,6 @@ module.exports = {
     if (interaction.user.id !== ownerID) {
       return interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
     }
-
     const user = interaction.options.getUser('user');
     if (!user) {
       return interaction.reply({ content: 'Please provide a user to remove cooldown for.', ephemeral: true });

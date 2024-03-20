@@ -1,6 +1,4 @@
 const { Collection, Intents, Client } = require('discord.js');
-const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 const path = require('path');
 const { token } = require('./config.json');
@@ -15,28 +13,32 @@ for (const file of commandFiles) {
   if (command.data) {
     client.commands.set(command.data.name, command);
   } else {
-    console.error(`Command data not found for file: ${filePath}`);
+    console.error(``);
   }
 }
 
+
+
 client.once('ready', () => {
-  console.log(`Ready! Logged in as ${client.user.tag}`);
+  console.log(`Logged in: ${client.user.tag}`);
+  console.log('Thank you for trying my Validating Licenses on Discord bot project! For more information or help visit the github page: https://github.com/t-a-g-o/vlod. You can change the status of the bot in the config.json file');
+  console.log('\n');
+  console.log('REMEMBER: You need to run service.py in order to keep the accounts registered online!')
   client.user.setPresence({
     status: 'online',
     activities: [{
-      name: 'your status message here',
-      type: 'PLAYING' // You can use 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
+      name: 'licenses',
+      type: 'WATCHING' // 'PLAYING', 'WATCHING', 'LISTENING', 'STREAMING'
     }]
   });
 });
 
+
+
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
-
   const command = client.commands.get(interaction.commandName);
-
   if (!command) return;
-
   try {
     await command.execute(interaction);
   } catch (error) {
@@ -44,5 +46,4 @@ client.on('interactionCreate', async interaction => {
     await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
   }
 });
-
 client.login(token);

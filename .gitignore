@@ -1,3 +1,5 @@
 node_modules
 assets/.DS_Store
 .DS_Store
+MANIFEST.in
+setup.py

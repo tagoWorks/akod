@@ -120,11 +120,11 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [x] Rename project (Nova -> VLoD)
 - [x] Create VLoDVP package
 - [x] Convert bot commands to discord slash applications
+- [x] Add checks for invalid account names
+- [x] Add catches for when an invalid folder is created
 - [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
-- [ ] Add checks for invalid account names
-- [ ] Add catches for when an invalid folder is created
 - [ ] Recode validate function
 - [ ] Add expiring method
 
