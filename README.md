@@ -2,17 +2,14 @@
 <div align="center">
     </a>
     <br />
+        [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
     
-   [tagoWorks](https://tago.works/) - [Discord](https://tago.works/discord)
-   
    ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
    ![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/vlod)
    ![GitHub](https://img.shields.io/github/license/t-a-g-o/vlod)
 
    *there is definitely an easier way to make a licensing service but idc*
-   
-Validating Licenses on Discord is a free and encrypted user license validation tool for your software. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. VLoD **allows your users to validate their purchased licenses** from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an **encrypted license file**, and commits the changes to a GitHub repository hosted on Netlify for accessibility.
-To integrate VLoD into your software, import the [VLoDVP](https://github.com/t-a-g-o/vlod/tree/vlodvp) package and obfuscate your final code using a tool like [Hyperion](https://github.com/billythegoat356/Hyperion) to hide the private key. **VLoD is open-source**, and you're encouraged to make your own modifications to suit your needs.
+
 </div>
 
 # Get Started with VLoD 🚀
