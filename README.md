@@ -52,13 +52,12 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    
 4. Open the `config.json` file with notepad or another text editor, and input all the values
    * token: Your discord bot token
-   * prefix: The bots prefix for commands
-   * owner: The owner's user ID (will be allowed to add licenses, remove cooldowns, and delete validated accounts)
+   * ownerID: The owner's user ID (will be allowed to add licenses, remove cooldowns, and delete validated accounts)
    * onlySendIn: The channel ID's where the bot will be allowed to resond
    * logChannel: The channel ID where the bot will send license validation logs
    * GITUSERNAME: Your GitHub account username
    * GITSTORAGEREPO: The repository where the accounts and active licenses will be stored
-   * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (make sure to give repo scopes)
+   * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (give repo scopes)
 5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `key.txt` file
    * It is very important to save this key, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
 
@@ -108,15 +107,15 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
 ## Member usage
-Users in your Discord server can validate their licenses by running the command "!license validate LICENSEKEY ACCOUNTNAME" where the ! is your set prefix in the `config.json` file.
+Users in your Discord server can validate their licenses by running the command "/validate LICENSEKEY ACCOUNTNAME" where the ! is your set prefix in the `config.json` file.
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fraud. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
 
 ## Owner usage
 As the owner, you can remove users cooldowns, add license keys, and deactive accounts that are registered to a license key
 *the following examples uses the prefix ! but you set your custom prefix in `config.json`*
-* !license removecooldown USERID
-* !license remove ACCOUNTNAME
-* !license keyadd LICENSEKEY
+* /removecooldown USERID
+* /remove ACCOUNTNAME
+* /keyadd LICENSEKEY
 
 **Note:**
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
@@ -124,12 +123,12 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 # Roadmap 🛣️
 - [x] Rename project (Nova -> VLoD)
 - [x] Create VLoDVP package
+- [x] Convert bot commands to discord slash applications
 - [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
 - [ ] Add checks for invalid account names
 - [ ] Add catches for when an invalid folder is created
-- [ ] Convert bot commands to discord slash applications
 - [ ] Recode validate function
 - [ ] Add expiereing method
 

@@ -1,0 +1,89 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { Jsonfile } = require('../config.json');
+const fs = require('fs');
+const path = require('path');
+const { cooldowns } = require('./shared');
+
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName('validate')
+    .setDescription('Validate your license key!')
+    .addStringOption(option =>
+      option
+        .setName('license-key')
+        .setDescription('Your purchased license key')
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option
+        .setName('account-name')
+        .setDescription('Create an account name login')
+        .setRequired(true)
+    ),
+  async execute(interaction) {
+    const licenseKey = interaction.options.getString('license-key');
+    const accname = interaction.options.getString('account-name');
+    const userId = interaction.user.id;
+    const lastUsage = cooldowns[userId];
+    // User cooldown: 30 days, always in milliseconds
+    if (lastUsage && cooldowns[userId] - lastUsage < 30 * 24 * 60 * 60 * 1000) {
+      const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));
+      await interaction.reply({
+        content: `To prevent any type of license key stealing, or spamming there is a implemented cooldown. Please contact staff for more help.`,
+        ephemeral: true,
+      });
+      return;
+    }
+    cooldowns[userId] = Date.now();
+
+    // Path to the assets folder from the root
+    const assetsFolderPath = path.join(__dirname, '..', 'assets');
+
+    // Path to all valid licenses text file in the assets folder
+    const licenseFilePath = path.join(assetsFolderPath, 'license.txt');
+
+    fs.readFile(licenseFilePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading license file:', err);
+        return interaction.reply({ content: 'Error reading license file. Please try again later.', ephemeral: true });
+      }
+      let licenses = data.split('\n');
+      const index = licenses.findIndex(key => key.trim() === licenseKey);
+      if (index !== -1) {
+        licenses.splice(index, 1);
+        fs.writeFile(licenseFilePath, licenses.join('\n'), async (err) => {
+          if (err) {
+            console.error('Error updating license file:', err);
+            return interaction.reply({ content: 'Error updating license file. Please try again later.', ephemeral: true });
+          }
+          const accFolder = path.join(assetsFolderPath, 'registered', accname);
+          fs.mkdir(accFolder, { recursive: true }, (err) => {
+            if (err) {
+              console.error('Error creating account folder:', err);
+              return interaction.reply({ content: 'Error creating account folder. Please try again later.', ephemeral: true });
+            }
+            const checkFilePath = path.join(accFolder, 'check');
+            fs.writeFile(checkFilePath, licenseKey, (err) => {
+              if (err) {
+                console.error('Error writing to check file:', err);
+                return interaction.reply({ content: 'Error writing to check file. Please try again later.', ephemeral: true });
+              }
+              const remainingLicenses = licenses.length;
+              let config = require('../config.json');
+              const logChannelId = config.logChannel;
+              const targetChannel = interaction.client.channels.cache.get(logChannelId);
+              if (targetChannel) {
+                targetChannel.send(`License key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
+              } else {
+                console.error('Error: Target channel not found.');
+              }
+              interaction.reply({ content: `Your license was successfully validated! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+            });
+          });
+        });
+      } else {
+        interaction.reply({ content: 'Invalid license key.', ephemeral: true });
+      }
+    });
+  }
+};

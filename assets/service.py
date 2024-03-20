@@ -1,8 +1,8 @@
-import os, subprocess, time, shutil, string
+import os, subprocess, time, shutil, string, secrets, json
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-import secrets
-import json
+
+
 
 #----------------------------------------------
 # ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
@@ -10,34 +10,6 @@ import json
 
 
 
-def load_config():
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    parent_dir = os.path.dirname(current_dir)
-    config_file_path = os.path.join(parent_dir, 'config.json')
-    with open(config_file_path, 'r') as config_file:
-        config = json.load(config_file)
-    return config
-config = load_config()
-username = config.get('GITUSERNAME', 'not_found')
-licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
-token = config.get('GITPAT', 'not_found')
-url = f'github.com/{username}/{licensestorage_repo}'
-repo = '.'
-key_size = 32
-registered_accounts = 'registered'
-if not os.path.exists('key.txt'):
-    characters = string.ascii_letters + string.digits
-    key = ''.join(secrets.choice(characters) for _ in range(32))
-    file_path = 'key.txt'
-    with open(file_path, 'w') as key_file:
-        key_file.write(key)
-    print(f"Generated 256-bit AES key and saved to '{file_path}'")
-    with open(file_path, 'r') as key_file:
-        privatekey = key_file.read().encode()
-with open('key.txt', 'rb') as key_file:
-    privatekey = key_file.read()
-if not os.path.exists(registered_accounts):
-    os.makedirs(registered_accounts)
 def clone(url, pat):
     git_command = ['git', 'clone', f'https://{pat}@{url}']
     try:
@@ -72,8 +44,8 @@ def process_new_folders(new_folders):
                     encrypted_file_path = os.path.join(target_folder_path, file)
                     with open(encrypted_file_path, 'wb') as f:
                         f.write(encrypted_data)
-                commit_changes(f"Registered account '{folder}' with encrypted license data.")
-                print(f"'{folder}' registered with encrypted license data.")
+                commit_changes(f"Account '{folder}' created with encrypted license data.")
+                print(f"'{folder}' created an account with an encrypted license.")
             except Exception as e:
                 print(f"Error: {e}")
 def delete_removed_folders(existing_folders, registered_folders):
@@ -81,7 +53,7 @@ def delete_removed_folders(existing_folders, registered_folders):
         if folder != '.git' and folder not in registered_folders:
             try:
                 shutil.rmtree(os.path.join(repo, folder))
-                commit_changes(f"Deleted folder '{folder}'.")
+                commit_changes(f"Deleted account '{folder}'.")
                 print(f"Account '{folder}' deleted.")
             except Exception as e:
                 print(f"Error: {e}")
@@ -104,7 +76,36 @@ def monitor(registered_accounts, repo_path):
         process_new_folders(registered_folders)
         delete_removed_folders(existing_folders, registered_folders)
         time.sleep(1)
-print("\n\nWatching for changes...")
+def load_config():
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    config_file_path = os.path.join(parent_dir, 'config.json')
+    with open(config_file_path, 'r') as config_file:
+        config = json.load(config_file)
+    return config
+config = load_config()
+username = config.get('GITUSERNAME', 'not_found')
+licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
+token = config.get('GITPAT', 'not_found')
+url = f'github.com/{username}/{licensestorage_repo}'
+repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
+key_size = 32
+registered_accounts = 'registered'
+if not os.path.exists('key.txt'):
+    characters = string.ascii_letters + string.digits
+    key = ''.join(secrets.choice(characters) for _ in range(32))
+    file_path = 'key.txt'
+    with open(file_path, 'w') as key_file:
+        key_file.write(key)
+    print(f"Generated 256-bit AES key and saved to '{file_path}'")
+    with open(file_path, 'r') as key_file:
+        privatekey = key_file.read().encode()
+with open('key.txt', 'rb') as key_file:
+    privatekey = key_file.read()
 if not os.path.exists(repo):
     clone(url, token)
+if not os.path.exists(registered_accounts):
+    os.mkdir(registered_accounts)
+    exit()
+print("\n\nWatching for changes...")
 monitor(registered_accounts, repo)
