@@ -117,6 +117,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [x] Convert bot commands to discord slash applications
 - [x] Add checks for invalid account names
 - [x] Add catches for when an invalid folder is created
+- [ ] Add public key functionality
 - [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
