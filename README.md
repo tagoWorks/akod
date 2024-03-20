@@ -104,11 +104,10 @@ If your having issues check out the example.py or join the [discord server](http
 # Discord Bot Usage 🤖
 ## Member usage
 Users in your Discord server can validate their licenses by running the command "/validate LICENSEKEY ACCOUNTNAME" where the ! is your set prefix in the `config.json` file.
-Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fraud. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/license.js` to a set amount of milliseconds.
+Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of license fraud. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/validate.js` to a set amount of milliseconds.
 
 ## Owner usage
 As the owner, you can remove users cooldowns, add license keys, and deactive accounts that are registered to a license key
-*the following examples uses the prefix ! but you set your custom prefix in `config.json`*
 * /removecooldown USERID
 * /remove ACCOUNTNAME
 * /keyadd LICENSEKEY
