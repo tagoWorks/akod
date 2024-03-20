@@ -11,12 +11,8 @@
 
    *there is definitely an easier way to make a licensing service but idc*
    
-   Validating Licenses on Discord bot is a user license validation tool coded in javascript and python, and uses GitHub and Netlify as licensing servers. **Completely free forever. And Encrypted.** The VLoD bot allows
-   users to validate their license that they purchased from your site, using a simple command. I created this because I was going to make licensed code later in the future and all licensing services cost money eventually.
-   VLoD works by creating a new directory with the chosen validated account name and in it it creates the check file with the license code, VLoD then copies this files over to your local git repo (encrypting the contents of the check file) and commits the
-   changes. Your GitHub repository will be hosted on Netlify in order to have the files accessable from anywhere. Then in your software code just import the [VLoDVP](https://github.com/t-a-g-o/vlod/tree/vlodvp) package and then obfuscate your final code in order
-   to hide the private key. I recommend [Hyperion](https://github.com/billythegoat356/Hyperion) as it is the most effective and hardest to decrypt. VLoD is open source and I encourge you to make your own changes!
-
+Validating Licenses on Discord is a free and encrypted user license validation tool for your software. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. VLoD **allows your users to validate their purchased licenses** from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an **encrypted license file**, and commits the changes to a GitHub repository hosted on Netlify for accessibility.
+To integrate VLoD into your software, import the [VLoDVP](https://github.com/t-a-g-o/vlod/tree/vlodvp) package and obfuscate your final code using a tool like [Hyperion](https://github.com/billythegoat356/Hyperion) to hide the private key. **VLoD is open-source**, and you're encouraged to make your own modifications to suit your needs.
 </div>
 
 # Get Started with VLoD 🚀
@@ -130,7 +126,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [ ] Add checks for invalid account names
 - [ ] Add catches for when an invalid folder is created
 - [ ] Recode validate function
-- [ ] Add expiereing method
+- [ ] Add expiring method
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
