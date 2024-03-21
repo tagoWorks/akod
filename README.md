@@ -3,9 +3,9 @@
     </a>
     <br />
 
-   ![GitHub last commit](https://img.shields.io/github/last-commit/t-a-g-o/vlod)
-   ![GitHub issues](https://img.shields.io/github/issues-raw/t-a-g-o/vlod)
-   ![GitHub](https://img.shields.io/github/license/t-a-g-o/vlod)
+   ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/vlod)
+   ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/vlod)
+   ![GitHub](https://img.shields.io/github/license/tagoworks/vlod)
 
    *there is definitely an easier way to make a licensing service but idc*
 
@@ -63,7 +63,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Download the [Validating Licenses on Discord Validating Package](https://github.com/t-a-g-o/vlodvp)
+1. Download the [Validating Licenses on Discord Validating Package](https://github.com/tagoworks/vlodvp)
    ```sh
    pip install VLoDVP
    ```
