@@ -36,7 +36,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    git clone https://github.com/tagoworks/vlod
    ```
    
-2. Open the new vlod folder
+2. Open the new `vlod` folder
    
 4. Download required modules by running the provided `GetReqs.bat` file
    
