@@ -1,12 +1,14 @@
-import os, subprocess, time, shutil, string, secrets, json
+import os, subprocess, time, shutil, string, secrets, json, base64
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-
+from cryptography.fernet import Fernet
 
 
 #----------------------------------------------
 # ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
 #----------------------------------------------
+
+
 
 
 
@@ -87,23 +89,40 @@ config = load_config()
 username = config.get('GITUSERNAME', 'not_found')
 licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
 token = config.get('GITPAT', 'not_found')
+pubkeylink = config.get('netlifyURL', 'not_found')
+if token == 'not_found' or username == 'not_found' or licensestorage_repo == 'not_found' or pubkeylink == 'not_found':
+    print("Missing configuration. Please check your config.json file.")
 url = f'github.com/{username}/{licensestorage_repo}'
 repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
 key_size = 32
 registered_accounts = 'registered'
-if not os.path.exists('key.txt'):
+if not os.path.exists('identifiers.txt'):
+    if not os.path.exists(registered_accounts):
+        os.mkdir(registered_accounts)
     characters = string.ascii_letters + string.digits
-    key = ''.join(secrets.choice(characters) for _ in range(32))
-    file_path = 'key.txt'
-    with open(file_path, 'w') as key_file:
-        key_file.write(key)
-    print(f"Generated 256-bit AES key and saved to '{file_path}'")
-    with open(file_path, 'r') as key_file:
-        privatekey = key_file.read().encode()
-with open('key.txt', 'rb') as key_file:
-    privatekey = key_file.read()
+    privkey = ''.join(secrets.choice(characters) for _ in range(32))
+    #!!!!!!!! DO NOT CHANGE THIS LINE OF CODE !!!!!!!!
+    identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
+    #!!!!!!!! DO NOT CHANGE THIS LINE OF CODE !!!!!!!!
+    fernet = Fernet(identifier)
+    pubkey = fernet.encrypt(pubkeylink.encode()).decode()
+    with open('identifiers.txt', 'w') as f:
+        f.write("<-> This auto generated file contains very sensitive and important strings. Do not share it with anyone. It is recommended that you do not regenerate this file. <->\n\n")
+        f.write('PRIVATE KEY IDENTIFIER\n')
+        f.write(privkey)
+        f.write('\n\nPUBLIC KEY IDENTIFIER\n')
+        f.write(pubkey)
+        f.write("\n\n<-> This auto generated file contains very sensitive and important strings. Do not share it with anyone. It is recommended that you do not regenerate this file. <->\n\n")
+    print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
+    exit()
 if not os.path.exists(repo):
     clone(url, token)
+with open('identifiers.txt', 'r') as f:
+    lines = f.readlines()
+    for i in range(len(lines)):
+        if "PRIVATE KEY IDENTIFIER" in lines[i]:
+            privatekey = lines[i+1].strip().encode()
+            break
 if not os.path.exists(registered_accounts):
     os.mkdir(registered_accounts)
     exit()

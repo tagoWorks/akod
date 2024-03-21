@@ -1,11 +1,11 @@
 import VLoDVP
-VLoDVP.setkey('12345678901234567890123456789012')
-VLoDVP.setlink('https://yourlink.netlify.app/')
+VLoDVP.privatekey('private key from identifier.txt')
+VLoDVP.publicserverkey('public key from identifier.txt')
 
 uservar = input("Enter username: ")
 licensekeyvar = input("Enter key: ")
 
-if VLoDVP.validate(uservar, licensekeyvar) == False:
+if VLoDVP.isValid(uservar, licensekeyvar) == False:
     print("Invalid username or key")
 else:
     print("Valid username and key")

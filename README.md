@@ -24,7 +24,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    
 2. Add a `index.html` file with any content (just so the site can deploy)
    
-3. Head to https://netlify.com/ and Login or Create an account
+3. Head to https://app.netlify.com/ and Login or Create an account
    
 4. Create your site via GitHub
 
@@ -50,18 +50,18 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    * GITUSERNAME: Your GitHub account username
    * GITSTORAGEREPO: The repository where the accounts and active licenses will be stored
    * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (give repo scopes)
-5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `key.txt` file
-   * It is very important to save this key, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
+   * netlifyURL: Your netlify link (https://repository.netlify.app/)
+5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `identifiers.txt` file
+   * It is very important to save these keys, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
 
 6. Input your custom licenses in the `license.txt` file
    * Remember to press ENTER after each license to be sure that the bot can write to the file without issues
    * When adding multiple licenses remember to press ENTER on the last string
-   ```txt
-   ABCD-EFGH-IJKL-MNOP
-   ABCD-EFGH-IJKL-MNOP
-   ABCD-EFGH-IJKL-MNOP
-
-   ```
+      ```txt
+      ABCD-EFGH-IJKL-MNOP
+      ABCD-EFGH-IJKL-MNOP
+      ABCD-EFGH-IJKL-MNOP
+      ```
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
@@ -73,10 +73,10 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    ```py
    import VLoDVP
    ```
-3. Define your private key (`assets/key.txt`) and your new netlify webserver
+3. Define your private & public key (`assets/identifiers.txt`)
    ```sh
-   VLoDVP.setkey('12345678901234567890123456789012')
-   VLoDVP.setlink('https://yourlink.netlify.app/')
+   VLoDVP.privatekey('hehSUUXf3m33ns9Hwenj')
+   VLoDVP.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
    ```
 4. Code a way for the user to input their username and license
 
@@ -87,7 +87,7 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    ```
 5. Check if the account exists and the license is active on your webserver
    ```py
-   if VLoDVP.validate(uservar, licensekeyvar) == False:
+   if VLoDVP.isValid(uservar, licensekeyvar) == False:
       print("Invalid username or key")
    else:
       # Run your main code here
@@ -117,11 +117,10 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 - [x] Convert bot commands to discord slash applications
 - [x] Add checks for invalid account names
 - [x] Add catches for when an invalid folder is created
-- [ ] Add public key functionality
+- [x] Add public key functionality
 - [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
 - [ ] Auto save login in VLoDVP
-- [ ] Recode validate function
 - [ ] Add expiring method
 
 # License & Information 📃

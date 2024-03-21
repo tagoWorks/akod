@@ -1,9 +1,10 @@
 {
-  "token": "DISCORD_BOT_TOKEN",
+  "token": "discord-bot-token",
   "ownerID": " ",
   "onlySendIn": " ",
   "logChannel": " ",
   "GITUSERNAME": " ",
   "GITSTORAGEREPO": " ",
-  "GITPAT": "GITHUB_PERSONAL_ACCESS_TOKEN"
+  "GITPAT": "github-personal-access-token",
+  "netlifyURL": "https://repository.netlify.app/"
 }
