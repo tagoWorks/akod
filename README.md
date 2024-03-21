@@ -31,18 +31,16 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
 5. Wait for site to deploy. You should have a link like "repositoryname.netlify.app"
 
 ## Prepare VLoD
-1. Clone the repo
+1. Create a new folder & clone the repo
    ```sh
-   git clone https://github.com/t-a-g-o/VLoD
+   git clone https://github.com/tagoworks/vlod
    ```
    
-2. CD into the directory
-   ```sh
-   cd VLoD
-   ```
-3. Download required modules by running the provided `GetReqs.bat` file
+2. Open the new vlod folder
    
-4. Open the `config.json` file with notepad or another text editor, and input all the values
+4. Download required modules by running the provided `GetReqs.bat` file
+   
+5. Open the `config.json` file with notepad or another text editor, and input all the values
    * token: Your discord bot token
    * ownerID: The owner's user ID (will be allowed to add licenses, remove cooldowns, and delete validated accounts)
    * onlySendIn: The channel ID's where the bot will be allowed to respond
@@ -51,10 +49,10 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
    * GITSTORAGEREPO: The repository where the accounts and active licenses will be stored
    * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (give repo scopes)
    * netlifyURL: Your netlify link (https://repository.netlify.app/)
-5. Open the `assets` directory and run the `StartService.bat` file in order to generate your `identifiers.txt` file
+6. Open the `assets` directory and run the `StartService.bat` file in order to generate your `identifiers.txt` file
    * It is very important to save these keys, if you publish your projects and use this key and later on change it you will not be able to validate any licenses.
 
-6. Input your custom licenses in the `license.txt` file
+7. Input your custom licenses in the `license.txt` file
    * Remember to press ENTER after each license to be sure that the bot can write to the file without issues
    * When adding multiple licenses remember to press ENTER on the last string
       ```txt
