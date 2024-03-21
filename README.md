@@ -65,7 +65,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Download the [Validating Licenses on Discord Validating Package](https://github.com/t-a-g-o/vlod/tree/vlodvp)
+1. Download the [Validating Licenses on Discord Validating Package](https://github.com/t-a-g-o/vlodvp)
    ```sh
    pip install VLoDVP
    ```
