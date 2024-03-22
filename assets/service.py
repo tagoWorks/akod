@@ -95,24 +95,24 @@ if token == 'not_found' or username == 'not_found' or licensestorage_repo == 'no
 url = f'github.com/{username}/{licensestorage_repo}'
 repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
 key_size = 32
-registered_accounts = 'registered'
+registered_accounts = 'registered'  
 if not os.path.exists('identifiers.txt'):
     if not os.path.exists(registered_accounts):
         os.mkdir(registered_accounts)
     characters = string.ascii_letters + string.digits
     privkey = ''.join(secrets.choice(characters) for _ in range(32))
-    #!!!!!!!! DO NOT CHANGE THIS LINE OF CODE !!!!!!!!
+    # It is recommended that you do not tamper with the identifier.
     identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
-    #!!!!!!!! DO NOT CHANGE THIS LINE OF CODE !!!!!!!!
-    fernet = Fernet(identifier)
-    pubkey = fernet.encrypt(pubkeylink.encode()).decode()
+    if not bytes(''.join(chr(array) for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]), 'utf-8') == identifier: print("It seems that you've edited the identifier from the default VLoD identifier key! Only change the identifier if you know what you are doing, as it will make validating licenses impossible with VLoDVP. Learn more at https://github.com/tagoworks/vlod")
     with open('identifiers.txt', 'w') as f:
-        f.write("<-> This auto generated file contains very sensitive and important strings. Do not share it with anyone. It is recommended that you do not regenerate this file. <->\n\n")
+        fernet = Fernet(identifier)
+        pubkey = fernet.encrypt(pubkeylink.encode()).decode()
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n<-> This auto generated file contains very sensitive and important strings. Do not share it with anyone. It is recommended that you do not regenerate this file. <->\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
     print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
     exit()
 if not os.path.exists(repo):
