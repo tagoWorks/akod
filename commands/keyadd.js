@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const fs = require('fs');
 const path = require('path');
-const { ownerID } = require('../config.json');
+const { ownerID, guildID } = require('../config.json');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,8 +12,7 @@ module.exports = {
         .setName('license-key')
         .setDescription('The license key to add')
         .setRequired(true)
-    )
-    .setDefaultPermission(false),
+    ),
   async execute(interaction) {
     if (interaction.user.id !== ownerID) {
       return interaction.reply({ content: 'You are not allowed to use this command.', ephemeral: true });
@@ -38,7 +37,13 @@ module.exports = {
       });
     });
   },
+  defaultPermission: false,
   permissions: [
+    {
+      id: guildID,
+      type: 'ROLE',
+      permission: false,
+    },
     {
       id: ownerID,
       type: 'USER',
