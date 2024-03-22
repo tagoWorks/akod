@@ -43,6 +43,7 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
 5. Open the `config.json` file with notepad or another text editor, and input all the values
    * token: Your discord bot token
    * ownerID: The owner's user ID (will be allowed to add licenses, remove cooldowns, and delete validated accounts)
+   * guildID: The server ID which the bot will be in (for permission sets)
    * onlySendIn: The channel ID's where the bot will be allowed to respond
    * logChannel: The channel ID where the bot will send license validation logs
    * GITUSERNAME: Your GitHub account username
