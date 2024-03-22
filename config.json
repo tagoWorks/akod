@@ -1,10 +1,11 @@
 {
-  "token": "discord-bot-token",
+  "token": "discord_bot_token",
+  "guildID": " ",
   "ownerID": " ",
   "onlySendIn": " ",
   "logChannel": " ",
   "GITUSERNAME": " ",
   "GITSTORAGEREPO": " ",
-  "GITPAT": "github-personal-access-token",
-  "netlifyURL": "https://repository.netlify.app/"
+  "GITPAT": "github_personal_access_token",
+  "netlifyURL": "https://yourrepo.netlify.app/"
 }

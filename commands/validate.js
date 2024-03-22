@@ -1,8 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Jsonfile } = require('../config.json');
 const fs = require('fs');
 const path = require('path');
-const { cooldowns } = require('./shared');
+const { cooldowns } = require('../events/shared.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -35,7 +34,6 @@ module.exports = {
       return;
     }
     cooldowns[userId] = Date.now();
-
     if (!/^[a-zA-Z0-9]+$/.test(accname) || /\s/.test(accname)) {
       await interaction.reply({
         content: `Invalid account name. Account name should only contain letters and numbers and should not contain any spaces.`,
@@ -69,14 +67,12 @@ module.exports = {
             delete cooldowns[userId];
             return;
           }
-
           licenses.splice(index, 1);
           fs.writeFile(licenseFilePath, licenses.join('\n'), async (err) => {
             if (err) {
               console.error('Error updating license file:', err);
               return interaction.reply({ content: 'Error updating license file. Please try again later.', ephemeral: true });
             }
-
             fs.mkdir(accFolder, { recursive: true }, (err) => {
               if (err) {
                 console.error('Error creating account folder:', err);

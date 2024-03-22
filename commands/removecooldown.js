@@ -1,12 +1,11 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const path = require('path');
-const { cooldowns } = require('./shared');
-const configPath = path.resolve(__dirname, '..', 'config.json');
-const { ownerID } = require(configPath);
+const { cooldowns } = require('../events/shared.js');
+const { ownerID, guildID } = require('../config.json');
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('removecooldown')
-    .setDefaultPermission(false)
     .setDescription('Remove cooldown for a user (Owner only)')
     .addUserOption(option =>
       option
@@ -22,15 +21,19 @@ module.exports = {
     if (!user) {
       return interaction.reply({ content: 'Please provide a user to remove cooldown for.', ephemeral: true });
     }
-
     if (!cooldowns[user.id]) {
       return interaction.reply({ content: 'There is no cooldown set for the provided user.', ephemeral: true });
     }
-
     delete cooldowns[user.id];
     return interaction.reply({ content: `Cooldown removed successfully for user ${user.username}.`, ephemeral: true });
   },
+  defaultPermission: false,
   permissions: [
+    {
+      id: guildID,
+      type: 'ROLE',
+      permission: false,
+    },
     {
       id: ownerID,
       type: 'USER',
