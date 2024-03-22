@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const path = require('path');
-const { cooldowns } = require('./shared');
+const { cooldowns } = require('../events/shared.js');
 const configPath = path.resolve(__dirname, '..', 'config.json');
 const { ownerID } = require(configPath);
 module.exports = {

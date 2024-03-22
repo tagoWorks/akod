@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { Jsonfile } = require('../config.json');
 const fs = require('fs');
 const path = require('path');
-const { cooldowns } = require('./shared');
+const { cooldowns } = require('../events/shared.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
