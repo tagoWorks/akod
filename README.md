@@ -1,4 +1,4 @@
-![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221120096664162314/header.png?ex=66116bb6&is=65fef6b6&hm=2698738ee5c4ba843e19ac858728db31a076cf44e249abf8e31bffb44fc8d68c&)
+![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221121903432040651/header.png?ex=66116d65&is=65fef865&hm=1d2fde258415cfbcde0327ed6d6690dcd981d673c77fbd1fc28a469b6f14a2d2&)
 <div align="center">
     </a>
     <br />
@@ -59,12 +59,6 @@ Here, there is a step by step instructions on how to setup and use VLoD, but I r
 
 7. Input your custom licenses in the `license.txt` file
    * Remember to press ENTER after each license to be sure that the bot can write to the file without issues
-   * When adding multiple licenses remember to press ENTER on the last string
-      ```txt
-      ABCD-EFGH-IJKL-MNOP
-      ABCD-EFGH-IJKL-MNOP
-      ABCD-EFGH-IJKL-MNOP
-      ```
 
 # Implement VLoD in your code 💻
 For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
@@ -114,10 +108,6 @@ As the owner, you can remove users cooldowns, add license keys, and deactive acc
 **Note:**
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
 
-
-![Keypoints](https://cdn.discordapp.com/attachments/1092315227057561630/1221120206500266134/3.png?ex=66116bd0&is=65fef6d0&hm=1300847ff47b3ee39c64ad7e600ffa1a4e0cfd3d13d6a18a74c2ad9b9a75afce&)
-
-
 # Roadmap 🛣️
 - [x] Rename project (Nova -> VLoD)
 - [x] Create VLoDVP package
@@ -132,5 +122,7 @@ To remove added license keys, or to add license keys in bulk you need to manuall
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
+
+![Keypoints](https://cdn.discordapp.com/attachments/1092315227057561630/1221120206500266134/3.png?ex=66116bd0&is=65fef6d0&hm=1300847ff47b3ee39c64ad7e600ffa1a4e0cfd3d13d6a18a74c2ad9b9a75afce&)
 
 If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
