@@ -7,7 +7,7 @@
    ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/akod)
    ![GitHub](https://img.shields.io/github/license/tagoworks/akod)
 
-   *there is definitely an easier way to make a licensing service but idc*
+   *there is definitely an easier way to make a activation service but idc*
 
 </div>
 
@@ -89,6 +89,7 @@ For now AKoD can only be used for Python scripts. If you want to contribute and 
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
+
 ## Member usage
 Users in your Discord server can validate their keys by running the command "/validate ACTIVATION-KEY ACCOUNT-NAME".
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of fraud. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/validate.js` to a set amount of milliseconds.
@@ -114,7 +115,5 @@ To remove added keys, or to add keys in bulk you need to manually edit the `asse
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
-
-![Keypoints](https://cdn.discordapp.com/attachments/1092315227057561630/1221120206500266134/3.png?ex=66116bd0&is=65fef6d0&hm=1300847ff47b3ee39c64ad7e600ffa1a4e0cfd3d13d6a18a74c2ad9b9a75afce&)
 
 If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
