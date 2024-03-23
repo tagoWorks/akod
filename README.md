@@ -48,7 +48,7 @@
    * GITSTORAGEREPO: The repository where the accounts and active accounts/keys will be stored
    * GITPAT: Your GitHub personal access token (PAT), which is used to push the new accounts to the webserver repository (give repo scopes)
    * netlifyURL: Your netlify link (https://repository.netlify.app/)
-6. Open the `assets` directory and run the `StartService.bat` file in order to generate your `identifiers.txt` file
+6. Open the `assets` directory and run the `StartWatching.bat` file in order to generate your `identifiers.txt` file
    * It is very important to save these keys, if you publish your projects and use this key and later on change it you will not be able to validate any keys.
 
 7. Input your custom keys in the `validkeys.txt` file
