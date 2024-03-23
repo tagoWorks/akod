@@ -1,4 +1,4 @@
-![Banner](./header.png)
+![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221120096664162314/header.png?ex=66116bb6&is=65fef6b6&hm=2698738ee5c4ba843e19ac858728db31a076cf44e249abf8e31bffb44fc8d68c&)
 <div align="center">
     </a>
     <br />
@@ -10,6 +10,10 @@
    *there is definitely an easier way to make a licensing service but idc*
 
 </div>
+
+> Validating Licenses on Discord is a free and multi-layered encrypted user license validation tool for your software. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. VLoD allows your users to validate their purchased licenses from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted license file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate VLoD into your software, import the VLoDVP package and obfuscate your final code using a tool like Hyperion to hide the private key. VLoD is open-source, and you're encouraged to make your own modifications to suit your needs.
+
+![Options](https://cdn.discordapp.com/attachments/1092315227057561630/1221120225949515930/2.png?ex=66116bd5&is=65fef6d5&hm=69d25dabafdb72c0c8570fc901251866953916376f33a76cb923bf5f1dc742e7&)
 
 # Get Started with VLoD 🚀
 ### Watch the YouTube tutorial I made to get start with VLoD!
@@ -109,6 +113,10 @@ As the owner, you can remove users cooldowns, add license keys, and deactive acc
 
 **Note:**
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
+
+
+![Keypoints](https://cdn.discordapp.com/attachments/1092315227057561630/1221120206500266134/3.png?ex=66116bd0&is=65fef6d0&hm=1300847ff47b3ee39c64ad7e600ffa1a4e0cfd3d13d6a18a74c2ad9b9a75afce&)
+
 
 # Roadmap 🛣️
 - [x] Rename project (Nova -> VLoD)
