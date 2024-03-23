@@ -29,7 +29,7 @@ client.once('ready', () => {
   console.log('\n');
   console.log('Thank you for trying my Activating Keys on Discord bot project! For more information or help visit the github page: https://github.com/tagoworks/akod. You can change the status of the bot in the main.js file');
   console.log('\n');
-  console.log('REMEMBER: You need to run Register.py in order to keep the accounts registered online!');
+  console.log('REMEMBER: You need to run RegisterWatcher.py in order to keep up with new accounts!');
   client.user.setPresence({
     status: 'online',
     activities: [{
