@@ -1,0 +1,2 @@
+python RegisterWatcher.py
+pause

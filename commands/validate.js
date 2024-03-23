@@ -6,11 +6,11 @@ const { cooldowns } = require('../events/shared.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('validate')
-    .setDescription('Validate your license key!')
+    .setDescription('Validate your purchased key!')
     .addStringOption(option =>
       option
-        .setName('license-key')
-        .setDescription('Your purchased license key')
+        .setName('activation-key')
+        .setDescription('Your purchased key')
         .setRequired(true)
     )
     .addStringOption(option =>
@@ -20,7 +20,7 @@ module.exports = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    const licenseKey = interaction.options.getString('license-key');
+    const licenseKey = interaction.options.getString('activation-key');
     const accname = interaction.options.getString('account-name');
     const userId = interaction.user.id;
     const lastUsage = cooldowns[userId];
@@ -28,7 +28,7 @@ module.exports = {
     if (lastUsage && cooldowns[userId] - lastUsage < 30 * 24 * 60 * 60 * 1000) {
       const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));
       await interaction.reply({
-        content: `To prevent any type of license key stealing, or spamming there is a implemented cooldown. Please contact staff for more help.`,
+        content: `To prevent any type of key stealing, or spamming there is a implemented cooldown. Please contact staff for more help.`,
         ephemeral: true,
       });
       return;
@@ -47,12 +47,12 @@ module.exports = {
     const assetsFolderPath = path.join(__dirname, '..', 'assets');
 
     // Path to all valid licenses text file in the assets folder
-    const licenseFilePath = path.join(assetsFolderPath, 'license.txt');
+    const licenseFilePath = path.join(assetsFolderPath, 'validkeys.txt');
 
     fs.readFile(licenseFilePath, 'utf8', (err, data) => {
       if (err) {
-        console.error('Error reading license file:', err);
-        return interaction.reply({ content: 'Error reading license file. Please try again later.', ephemeral: true });
+        console.error('Error reading key file:', err);
+        return interaction.reply({ content: 'Error reading key file. Please try again later.', ephemeral: true });
       }
       let licenses = data.split('\n');
       const index = licenses.findIndex(key => key.trim() === licenseKey);
@@ -71,7 +71,7 @@ module.exports = {
           fs.writeFile(licenseFilePath, licenses.join('\n'), async (err) => {
             if (err) {
               console.error('Error updating license file:', err);
-              return interaction.reply({ content: 'Error updating license file. Please try again later.', ephemeral: true });
+              return interaction.reply({ content: 'Error updating key file. Please try again later.', ephemeral: true });
             }
             fs.mkdir(accFolder, { recursive: true }, (err) => {
               if (err) {
@@ -89,17 +89,17 @@ module.exports = {
                 const logChannelId = config.logChannel;
                 const targetChannel = interaction.client.channels.cache.get(logChannelId);
                 if (targetChannel) {
-                  targetChannel.send(`License key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nLICENSE KEYS LEFT: ${remainingLicenses}`);
+                  targetChannel.send(`Activation key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nVALID KEYS LEFT: ${remainingLicenses}`);
                 } else {
                   console.error('Error: Target channel not found.');
                 }
-                interaction.reply({ content: `Your license was successfully validated! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+                interaction.reply({ content: `Your key was successfully activated with your username! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
               });
             });
           });
         });
       } else {
-        interaction.reply({ content: 'Invalid license key.', ephemeral: true });
+        interaction.reply({ content: 'Invalid key. Please try again later.', ephemeral: true });
       }
     });
   }

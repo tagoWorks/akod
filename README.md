@@ -1,21 +1,21 @@
-![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221121903432040651/header.png?ex=66116d65&is=65fef865&hm=1d2fde258415cfbcde0327ed6d6690dcd981d673c77fbd1fc28a469b6f14a2d2&)
+![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221138931916214422/akodheader.png?ex=66117d41&is=65ff0841&hm=2ed0dd5c745a01f6b3a32d508424f5352ab63b95d47e149b8f3a0b79b70aa0c8&)
 <div align="center">
     </a>
     <br />
 
-   ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/vlod)
-   ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/vlod)
-   ![GitHub](https://img.shields.io/github/license/tagoworks/vlod)
+   ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/akod)
+   ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/akod)
+   ![GitHub](https://img.shields.io/github/license/tagoworks/akod)
 
    *there is definitely an easier way to make a licensing service but idc*
 
 </div>
 
-> Validating Licenses on Discord is a free and multi-layered encrypted user license validation tool for your software. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. VLoD allows your users to validate their purchased licenses from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted license file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate VLoD into your software, import the VLoDVP package and obfuscate your final code using a tool like Hyperion to hide the private key. VLoD is open-source, and you're encouraged to make your own modifications to suit your needs.
+> Activating Keys on Discord is a free and multi-layered encrypted user license validation tool for your software. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. AKoD allows your users to validate their purchased licenses from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted license file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate AKoD into your software, import the AKoDAuth package and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD is open-source, and you're encouraged to make your own modifications to suit your needs.
 
 ![Options](https://cdn.discordapp.com/attachments/1092315227057561630/1221120225949515930/2.png?ex=66116bd5&is=65fef6d5&hm=69d25dabafdb72c0c8570fc901251866953916376f33a76cb923bf5f1dc742e7&)
 
-# Get Started with VLoD 🚀
+# Get Started with AKoD 🚀
 
 ## Setup webserver
 1. Create a new private GitHub repo
@@ -28,13 +28,13 @@
 
 5. Wait for site to deploy. You should have a link like "repositoryname.netlify.app"
 
-## Prepare VLoD
+## Prepare AKoD
 1. Create a new folder & clone the repo
    ```sh
-   git clone https://github.com/tagoworks/vlod
+   git clone https://github.com/tagoworks/akod
    ```
    
-2. Open the new `vlod` folder
+2. Open the new `akod` folder
    
 4. Download required modules by running the provided `GetReqs.bat` file
    
@@ -54,20 +54,20 @@
 7. Input your custom licenses in the `license.txt` file
    * Remember to press ENTER after each license to be sure that the bot can write to the file without issues
 
-# Implement VLoD in your code 💻
-For now VLoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Download the [Validating Licenses on Discord Validating Package](https://github.com/t-a-g-o/vlodvp)
+# Implement AKoD in your code 💻
+For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
+1. Download the [Activating Keys Auth Package](https://github.com/t-a-g-o/akodap)
    ```sh
-   pip install VLoDVP
+   pip install AKoDAuth
    ```
 2. Import the package to your main code
    ```py
-   import VLoDVP
+   import AKoDAuth as auth
    ```
 3. Define your private & public key (`assets/identifiers.txt`)
    ```sh
-   VLoDVP.privatekey('hehSUUXf3m33ns9Hwenj')
-   VLoDVP.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
+   auth.privatekey('hehSUUXf3m33ns9Hwenj')
+   auth.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
    ```
 4. Code a way for the user to input their username and license
 
@@ -78,7 +78,7 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
    ```
 5. Check if the account exists and the license is active on your webserver
    ```py
-   if VLoDVP.isValid(uservar, licensekeyvar) == False:
+   if auth.isValid(uservar, licensekeyvar) == False:
       print("Invalid username or key")
    else:
       # Run your main code here
@@ -103,15 +103,13 @@ As the owner, you can remove users cooldowns, add license keys, and deactive acc
 To remove added license keys, or to add license keys in bulk you need to manually edit the `assets/license.txt` file, making sure that the last license key ends with pressing the ENTER key to go down a line.
 
 # Roadmap 🛣️
-- [x] Rename project (Nova -> VLoD)
-- [x] Create VLoDVP package
+- [x] Rename project (VLoD -> AKoD)
 - [x] Convert bot commands to discord slash applications
 - [x] Add checks for invalid account names
 - [x] Add catches for when an invalid folder is created
 - [x] Add public key functionality
 - [ ] Use account ID to further secure logins
 - [ ] Expand on languages to license
-- [ ] Auto save login in VLoDVP
 - [ ] Add expiring method
 
 # License & Information 📃

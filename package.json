@@ -1,10 +1,10 @@
 {
-  "name": "vlod-licensing-bot",
+  "name": "akod-auth-bot",
   "version": "1.0.0",
-  "description": "A discord bot that makes licensing easy!",
-  "main": "vlod.js",
+  "description": "A discord bot that makes activating keys easy!",
+  "main": "main.js",
   "scripts": {
-    "start": "node vlod.js"
+    "start": "node main.js"
   },
   "nodemonConfig": {
     "ignore": [

@@ -98,7 +98,7 @@ repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
 identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
 registered_accounts = 'registered'  
 if not os.path.exists('identifiers.txt'):
-    backupfile = glob.glob('/Users/' + os.getlogin() + '/Documents/' + 'vlodidentifiers-backup-*.txt')
+    backupfile = glob.glob('/Users/' + os.getlogin() + '/Documents/' + 'akodidentifiers-backup-*.txt')
     if backupfile:
         for backupfile in backupfile:
             if os.path.exists(backupfile):
@@ -112,24 +112,24 @@ if not os.path.exists('identifiers.txt'):
     if not os.path.exists(registered_accounts):
         os.mkdir(registered_accounts)
     privkey = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
-    if not bytes(''.join(chr(array) for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]), 'utf-8') == identifier: print("It seems that you've edited the identifier from the default VLoD identifier key! Only change the identifier if you know what you are doing, as it will make validating licenses impossible with VLoDVP. Learn more at https://github.com/tagoworks/vlod") and exit()
+    if not bytes(''.join(chr(array) for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]), 'utf-8') == identifier: print("It seems that you've edited the identifier from the default identifier key! Only change the identifier if you know what you are doing, as it will make validating licenses impossible with AKoDAuth. Learn more at https://github.com/tagoworks/akod") and exit()
     with open('identifiers.txt', 'w') as f:
         fernet = Fernet(identifier)
         pubkey = fernet.encrypt(pubkeylink.encode()).decode()
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/akod ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/akod ----\n\n")
         f.close()
-    with open ('/Users/' + os.getlogin() + '/Documents/vlodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
+    with open ('/Users/' + os.getlogin() + '/Documents/akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/akod ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/vlod ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - More info at https://github.com/tagoworks/akod ----\n\n")
         f.close()
     print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
     exit()
@@ -144,5 +144,5 @@ with open('identifiers.txt', 'r') as f:
 if not os.path.exists(registered_accounts):
     os.mkdir(registered_accounts)
     exit()
-print("\n\nWatching for changes...")
+print("\n\nWatching account folder...")
 monitor(registered_accounts, repo)
