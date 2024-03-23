@@ -15,8 +15,6 @@ module.exports = {
     ),
   
   async execute(interaction) {
-    const { ownerID } = require('../config.json');
-    const { guildID } = require('../config.json');
     if (!ownerID) {
       return interaction.reply({ content: 'Owner information not found in config.', ephemeral: true });
     }
@@ -31,7 +29,7 @@ module.exports = {
         console.error('Error removing account folder:', err);
         return interaction.reply({ content: 'Error removing account folder. Please try again later.', ephemeral: true });
       }
-      return interaction.reply({ content: `License removed successfully for ${accToRemove}.`, ephemeral: true });
+      return interaction.reply({ content: `Account ${accToRemove} deleted successfully.`, ephemeral: true });
     });
   },
   permissions: [
