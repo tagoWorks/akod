@@ -16,12 +16,6 @@
 ![Options](https://cdn.discordapp.com/attachments/1092315227057561630/1221120225949515930/2.png?ex=66116bd5&is=65fef6d5&hm=69d25dabafdb72c0c8570fc901251866953916376f33a76cb923bf5f1dc742e7&)
 
 # Get Started with VLoD 🚀
-### Watch the YouTube tutorial I made to get start with VLoD!
-[![YouTube Tutorial](https://img.youtube.com/vi/ZGfnvUzBGG8/0.jpg)](https://youtube.com/watch?v=ZGfnvUzBGG8)
-
-# VLoD & Netlify Setup ⌨️
-
-Here, there is a step by step instructions on how to setup and use VLoD, but I recommend watching the video above
 
 ## Setup webserver
 1. Create a new private GitHub repo
@@ -90,7 +84,7 @@ For now VLoD can only be used for Python scripts. If you want to contribute and 
       # Run your main code here
    ```
 6. Obfuscate your code (optional)
- In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced and I personally use it for some of my code before.
+ In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced. Additionally, if you create an executable from your python code it will be difficult to decompile.
 
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
