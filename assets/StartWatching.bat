@@ -1,2 +1,2 @@
-python RegisterWatcher.py
+python watcher.py
 pause

@@ -22,8 +22,8 @@ def clone(url, pat):
         os.chdir('.')
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
-        exit()
     print("Repository cloned successfully.")
+    exit()
 def encrypt_file(file_path, key):
     with open(file_path, 'rb') as f:
         data = f.read()
@@ -102,12 +102,12 @@ if not os.path.exists('identifiers.txt'):
     if backupfile:
         for backupfile in backupfile:
             if os.path.exists(backupfile):
-                cont = input("Could not find identifiers.txt but found a backup! It is heavily recommended that you do not regenerate your identifiers but you can do so if you wish (y/n) ")
-                if cont == 'n':
+                cont = input("Could not find identifiers.txt but found a backup! It is heavily recommended that you do not regenerate your identifiers as it can cause key reading errors. Do you want to restore the backup (y/n) ")
+                if cont == 'y':
                     shutil.copyfile(backupfile, 'identifiers.txt')
                     print("Restored backup identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")   
                     exit()
-                if cont == 'y':
+                if cont == 'n':
                     os.remove(backupfile)
     if not os.path.exists(registered_accounts):
         os.mkdir(registered_accounts)
