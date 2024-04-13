@@ -1,4 +1,4 @@
-![Banner](https://cdn.discordapp.com/attachments/1092315227057561630/1221138931916214422/akodheader.png?ex=66117d41&is=65ff0841&hm=2ed0dd5c745a01f6b3a32d508424f5352ab63b95d47e149b8f3a0b79b70aa0c8&)
+![Banner](https://media.discordapp.net/attachments/1092315227057561630/1221138931916214422/akodheader.png?ex=662d2cc1&is=661ab7c1&hm=bb787a7cb77e43e5258d9d82ac9526a261da7fd24265c8a79ca57f7f489c5e8c&=&format=webp&quality=lossless&width=1440&height=242)
 <div align="center">
     </a>
     <br />
@@ -13,7 +13,7 @@
 
 > Activating Keys on Discord is a free and multi-layered encrypted user key authentication tool for your code. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. AKoD allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate AKoD into your software, import the AKoDAuth package and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD is open-source, and you're encouraged to make your own modifications to suit your needs.
 
-![Options](https://cdn.discordapp.com/attachments/1092315227057561630/1221120225949515930/2.png?ex=66116bd5&is=65fef6d5&hm=69d25dabafdb72c0c8570fc901251866953916376f33a76cb923bf5f1dc742e7&)
+![Options](https://media.discordapp.net/attachments/1092315227057561630/1221170096630927442/akod.png?ex=662d49c7&is=661ad4c7&hm=ed6f01cc3201272eb21db6a96a58254582defa1cb596de08db3c33067c703ce3&=&format=webp&quality=lossless&width=1440&height=477)
 
 # Get Started with AKoD 🚀
 
