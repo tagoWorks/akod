@@ -8,10 +8,8 @@ from cryptography.fernet import Fernet
 
 #-------------------------------------------------------------------------------------
 #              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
-# https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F
+#     https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables
 #-------------------------------------------------------------------------------------
-
-
 
 
 
@@ -139,20 +137,20 @@ if not os.path.exists('identifiers.txt'):
     with open('identifiers.txt', 'w') as f:
         fernet = Fernet(identifier)
         pubkey = fernet.encrypt(pubkeylink.encode()).decode()
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.close()
     with open ('/Users/' + os.getlogin() + '/Documents/akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.close()
     print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
     exit()
