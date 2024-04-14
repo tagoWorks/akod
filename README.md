@@ -69,21 +69,22 @@ For now AKoD can only be used for Python scripts. If you want to contribute and 
    auth.privatekey('hehSUUXf3m33ns9Hwenj')
    auth.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
    ```
-4. Code a way for the user to input their username and key
+4. Define the activation key and input username and password (save the activation key to a text file and read from it to log in faster, see the `example.py`)
+
    *username and password can be anything*
    ```py
    auth.setActivationKey('ABCD-1234-ABCD-1234')
    username = input("Enter your username: ")
    password = input("Enter your password: ")
    ```
-5. Check if the login exists and the key is valid
+6. Check if the login exists and the key is valid
    ```py
    if auth.isValid(username, password) == False:
       print("Invalid login!")
    else:
       # Run your main code here
    ```
-6. Obfuscate your code (optional)
+7. Obfuscate your code (optional)
  In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced. Additionally, if you create an executable from your python code it will be difficult to decompile.
 
 
