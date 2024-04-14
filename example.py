@@ -18,7 +18,7 @@ username = input("Enter username: ")
 password = input("Enter password: ")
 
 if auth.isValid(username, password) == False:
-    print("Invalid username or key")
+    print("Invalid login credentials.")
     exit
 else:
-    print("Valid username and key")
+    print("Hello World!")
