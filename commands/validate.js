@@ -6,29 +6,36 @@ const { cooldowns } = require('../events/shared.js');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('validate')
-    .setDescription('Validate your purchased key!')
+    .setDescription('Validate your key!')
     .addStringOption(option =>
       option
         .setName('activation-key')
-        .setDescription('Your purchased key')
+        .setDescription('Paste your activation key here (ABCD-1234-ABCD-1234)')
         .setRequired(true)
     )
     .addStringOption(option =>
       option
-        .setName('account-name')
-        .setDescription('Create an account name login')
+        .setName('login')
+        .setDescription('Create an account name for login')
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option
+        .setName('password')
+        .setDescription('Create a password for the login')
         .setRequired(true)
     ),
   async execute(interaction) {
     const licenseKey = interaction.options.getString('activation-key');
-    const accname = interaction.options.getString('account-name');
+    const accname = interaction.options.getString('login');
+    const accpass = interaction.options.getString('password');
     const userId = interaction.user.id;
     const lastUsage = cooldowns[userId];
     // User cooldown: 30 days, always in milliseconds
     if (lastUsage && cooldowns[userId] - lastUsage < 30 * 24 * 60 * 60 * 1000) {
       const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));
       await interaction.reply({
-        content: `To prevent any type of key stealing, or spamming there is a implemented cooldown. Please contact staff for more help.`,
+        content: `You have already attempted to use or have used this command in the last ${remainingTime} days. Please contact staff for support.`,
         ephemeral: true,
       });
       return;
@@ -78,6 +85,12 @@ module.exports = {
                 console.error('Error creating account folder:', err);
                 return interaction.reply({ content: 'Error creating account folder. Please try again later.', ephemeral: true });
               }
+              fs.writeFile(path.join(accFolder, 'password.txt'), accpass, (err) => {
+                if (err) {
+                  console.error('Error writing to password file:', err);
+                  return interaction.reply({ content: 'Error writing to password file. Please try again later.', ephemeral: true });
+                }
+              });
               const checkFilePath = path.join(accFolder, 'check');
               fs.writeFile(checkFilePath, licenseKey, (err) => {
                 if (err) {
@@ -88,18 +101,19 @@ module.exports = {
                 let config = require('../config.json');
                 const logChannelId = config.logChannel;
                 const targetChannel = interaction.client.channels.cache.get(logChannelId);
+
                 if (targetChannel) {
                   targetChannel.send(`Activation key: ${licenseKey}\nUsername: ${accname}\nTime Activated: ${new Date().toLocaleString()}\nVALID KEYS LEFT: ${remainingLicenses}`);
                 } else {
                   console.error('Error: Target channel not found.');
                 }
-                interaction.reply({ content: `Your key was successfully activated with your username! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+                interaction.reply({ content: `If your key is valid your login will be created! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
               });
             });
           });
         });
       } else {
-        interaction.reply({ content: 'Invalid key. Please try again later.', ephemeral: true });
+        interaction.reply({ content: 'If your key is valid your login will be created! Please wait about 15-20 seconds for the servers to update before use.', ephemeral: true });
       }
     });
   }

@@ -70,15 +70,15 @@ For now AKoD can only be used for Python scripts. If you want to contribute and 
    auth.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
    ```
 4. Code a way for the user to input their username and key
-
-   *uservar and licensekeyvar can be anything*
+   *username and password can be anything*
    ```py
-   uservar = input("Enter username: ")
-   licensekeyvar = input("Enter key: ")
+   auth.setActivationKey('ABCD-1234-ABCD-1234')
+   username = input("Enter your username: ")
+   password = input("Enter your password: ")
    ```
-5. Check if the account exists and the key valid
+5. Check if the login exists and the key is valid
    ```py
-   if auth.isValid(uservar, licensekeyvar) == False:
+   if auth.isValid(username, password) == False:
       print("Invalid username or key")
    else:
       # Run your main code here
@@ -91,7 +91,7 @@ If your having issues check out the example.py or join the [discord server](http
 # Discord Bot Usage 🤖
 
 ## Member usage
-Users in your Discord server can validate their keys by running the command "/validate ACTIVATION-KEY ACCOUNT-NAME".
+Users in your Discord server can validate their keys by running the command "/validate ACTIVATION-KEY LOGIN PASSWORD".
 Any member of you discord server by default will be set to a 30 day cooldown in order to prevent any type of fraud. To change this cooldown you can edit the "'const remainingTime = Math.ceil((30 * 24 * 60 * 60 * 1000 - (Date.now() - lastUsage)) / (1000 * 60 * 60 * 24));" line in `commands/validate.js` to a set amount of milliseconds.
 
 ## Owner usage
@@ -109,7 +109,7 @@ To remove added keys, or to add keys in bulk you need to manually edit the `asse
 - [x] Add checks for invalid account names
 - [x] Add catches for when an invalid folder is created
 - [x] Add public key functionality
-- [ ] Use account ID to further secure logins
+- [X] Add password function
 - [ ] Expand on languages to use AKoDAuth
 - [ ] Add expiring method
 

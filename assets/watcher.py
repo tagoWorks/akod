@@ -1,12 +1,15 @@
 import os, subprocess, time, shutil, string, secrets, json, glob
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 
 
-#----------------------------------------------
-# ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
-#----------------------------------------------
+#-------------------------------------------------------------------------------------
+#              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
+# https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F
+#-------------------------------------------------------------------------------------
 
 
 
@@ -24,28 +27,49 @@ def clone(url, pat):
         print(f"Error: {e}")
     print("Repository cloned successfully.")
     exit()
-def encrypt_file(file_path, key):
+def encrypt_file_pass(file_path):
+    global privatekey
+
     with open(file_path, 'rb') as f:
         data = f.read()
-    iv = os.urandom(16)
-    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    iv = b'JMWUGHTG78TH78G1'
+    password_file_path = os.path.join(os.path.dirname(file_path), 'password.txt')
+    with open(password_file_path, 'r') as password_file:
+        password = password_file.read().strip().encode()
+    salt = b'352384758902754328957328905734895278954789'
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=100000,
+        backend=default_backend()
+    )
+    password_key = kdf.derive(password)
+    cipher = Cipher(algorithms.AES(privatekey), modes.CFB(iv), backend=default_backend())
     encryptor = cipher.encryptor()
-    ciphertext = encryptor.update(data) + encryptor.finalize()
-    return iv + ciphertext
+    encrypted_data = encryptor.update(data) + encryptor.finalize()
+    cipher_password = Cipher(algorithms.AES(password_key), modes.CFB(iv), backend=default_backend())
+    encryptor_password = cipher_password.encryptor()
+    final_encrypted_data = encryptor_password.update(encrypted_data) + encryptor_password.finalize()
+    return iv + final_encrypted_data
+    
 def process_new_folders(new_folders):
     for folder in new_folders:
         folder_path = os.path.join(registered_accounts, folder)
         target_folder_path = os.path.join(repo, folder)
         if not os.path.exists(target_folder_path):
             try:
+                def ignore_password_files(dir, contents):
+                    return [content for content in contents if content == 'password.txt' or content.endswith('.txt')]
+                shutil.copytree(folder_path, target_folder_path, ignore=ignore_password_files)
                 files = os.listdir(folder_path)
                 for file in files:
-                    file_path = os.path.join(folder_path, file)
-                    encrypted_data = encrypt_file(file_path, privatekey)
-                    shutil.copytree(folder_path, target_folder_path)
-                    encrypted_file_path = os.path.join(target_folder_path, file)
-                    with open(encrypted_file_path, 'wb') as f:
-                        f.write(encrypted_data)
+                    if not file.endswith('.txt'):
+                        file_path = os.path.join(folder_path, file)
+                        encrypted_data = encrypt_file_pass(file_path)
+                        encrypted_file_path = os.path.join(target_folder_path, file)
+                        with open(encrypted_file_path, 'wb') as f:
+                            f.write(encrypted_data)
                 commit_changes(f"Account '{folder}' created with encrypted license data.")
                 print(f"'{folder}' created an account with an encrypted license.")
             except Exception as e:
@@ -94,7 +118,6 @@ if token == 'not_found' or username == 'not_found' or licensestorage_repo == 'no
     print("Missing configuration. Please check your config.json file.")
 url = f'github.com/{username}/{licensestorage_repo}'
 repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
-# Please only change the identifier if you know what you are doing. Learn more at https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F#important-notices
 identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
 registered_accounts = 'registered'  
 if not os.path.exists('identifiers.txt'):
@@ -136,6 +159,7 @@ if not os.path.exists('identifiers.txt'):
 if not os.path.exists(repo):
     clone(url, token)
 with open('identifiers.txt', 'r') as f:
+    iv = os.urandom(16)
     lines = f.readlines()
     for i in range(len(lines)):
         if "PRIVATE KEY IDENTIFIER" in lines[i]:
