@@ -1,10 +1,12 @@
-import os, subprocess, time, shutil, string, secrets, json, glob
+import os, subprocess, time, shutil, string, secrets, json, glob, requests
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 
+# Directory to clone the repo to
+clonerepoat = '/Users/' + os.getlogin() + '/Documents/GitHub/'
 
 #-------------------------------------------------------------------------------------
 #              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
@@ -16,18 +18,27 @@ from cryptography.fernet import Fernet
 def clone(url, pat):
     git_command = ['git', 'clone', f'https://{pat}@{url}']
     try:
-        if not os.path.exists('/Users/' + os.getlogin() + '/Documents/GitHub/'):
-            os.makedirs('/Users/' + os.getlogin() + '/Documents/GitHub/')
-        os.chdir('/Users/' + os.getlogin() + '/Documents/GitHub/')
+        if not os.path.exists(clonerepoat):
+            os.makedirs(clonerepoat)
+        os.chdir(clonerepoat)
         output = subprocess.check_output(git_command)
-        os.chdir('.')
+        os.chdir(licensestorage_repo)
+        if os.path.exists('index.html'):
+            os.remove('index.html')
+        url = 'https://cdn.tago.works/apps/akod/webpage/index.html'
+        response = requests.get(url)
+        content = response.text
+        new = content.replace('https://githublink.com/', f'https://github.com/{username}/{licensestorage_repo}')
+        with open('index.html', 'w') as f:
+            f.write(new)
+            f.close()
+        commit_changes('Reading and Writing OK')
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
     print("Repository cloned successfully.")
     exit()
 def encrypt_file_pass(file_path):
     global privatekey
-
     with open(file_path, 'rb') as f:
         data = f.read()
     iv = b'JMWUGHTG78TH78G1'
@@ -50,7 +61,6 @@ def encrypt_file_pass(file_path):
     encryptor_password = cipher_password.encryptor()
     final_encrypted_data = encryptor_password.update(encrypted_data) + encryptor_password.finalize()
     return iv + final_encrypted_data
-    
 def process_new_folders(new_folders):
     for folder in new_folders:
         folder_path = os.path.join(registered_accounts, folder)
@@ -115,7 +125,7 @@ pubkeylink = config.get('netlifyURL', 'not_found')
 if token == 'not_found' or username == 'not_found' or licensestorage_repo == 'not_found' or pubkeylink == 'not_found':
     print("Missing configuration. Please check your config.json file.")
 url = f'github.com/{username}/{licensestorage_repo}'
-repo = '/Users/' + os.getlogin() + '/Documents/GitHub/' + licensestorage_repo
+repo = clonerepoat + licensestorage_repo
 identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
 registered_accounts = 'registered'  
 if not os.path.exists('identifiers.txt'):
@@ -137,20 +147,20 @@ if not os.path.exists('identifiers.txt'):
     with open('identifiers.txt', 'w') as f:
         fernet = Fernet(identifier)
         pubkey = fernet.encrypt(pubkeylink.encode()).decode()
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
         f.close()
     with open ('/Users/' + os.getlogin() + '/Documents/akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
         f.close()
     print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
     exit()
