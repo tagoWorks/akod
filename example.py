@@ -1,11 +1,23 @@
 import AKoDAuth as auth
-auth.privatekey('private key from identifier.txt')
-auth.publicserverkey('public key from identifier.txt')
+import os
+auth.privatekey('private key from identifiers.txt')
+auth.publicserverkey('public key from identifiers.txt')
 
-usernamevar = input("Enter username: ")
-activationkeyvar = input("Enter key: ")
+if os.path.exists('licensekey.txt'):
+    with open ('licensekey.txt', 'r') as f:
+        auth.setActivationKey(f.read())
+        f.close()
+else:
+    activationkey = input("Enter activation key: ")
+    auth.setActivationKey(activationkey)
+    with open ('licensekey.txt', 'w') as f:
+        f.write(activationkey)
+        f.close()
 
-if auth.isValid(usernamevar, activationkeyvar) == False:
+username = input("Enter username: ")
+password = input("Enter password: ")
+
+if auth.isValid(username, password) == False:
     print("Invalid username or key")
     exit
 else:
