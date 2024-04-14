@@ -16,6 +16,7 @@
 ![Options](https://media.discordapp.net/attachments/1092315227057561630/1221170096630927442/akod.png?ex=662d49c7&is=661ad4c7&hm=ed6f01cc3201272eb21db6a96a58254582defa1cb596de08db3c33067c703ce3&=&format=webp&quality=lossless&width=1440&height=477)
 
 # Get Started with AKoD 🚀
+For better detailed intructions visit the revisioned [wiki page](https://github.com/tagoworks/akod/wiki/getting-started)
 
 ## Setup webserver
 1. Create a new private GitHub repo
