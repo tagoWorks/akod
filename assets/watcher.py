@@ -118,11 +118,12 @@ def load_config():
         config = json.load(config_file)
     return config
 config = load_config()
-username = config.get('GITUSERNAME', 'not_found')
-licensestorage_repo = config.get('GITSTORAGEREPO', 'not_found')
-token = config.get('GITPAT', 'not_found')
-pubkeylink = config.get('netlifyURL', 'not_found')
-if token == 'not_found' or username == 'not_found' or licensestorage_repo == 'not_found' or pubkeylink == 'not_found':
+username = config.get('GITUSERNAME', ' ')
+licensestorage_repo = config.get('GITSTORAGEREPO', ' ')
+token = config.get('GITPAT', ' ')
+pubkeylink = config.get('netlifyURL', ' ')
+pubkeylink = pubkeylink if pubkeylink.endswith('/') else pubkeylink + '/'
+if token == ' ' or username == ' ' or licensestorage_repo == ' ' or pubkeylink == ' ':
     print("Missing configuration. Please check your config.json file.")
 url = f'github.com/{username}/{licensestorage_repo}'
 repo = clonerepoat + licensestorage_repo
@@ -133,7 +134,7 @@ if not os.path.exists('identifiers.txt'):
     if backupfile:
         for backupfile in backupfile:
             if os.path.exists(backupfile):
-                cont = input("Could not find identifiers.txt but found a backup! It is heavily recommended that you do not regenerate your identifiers as it can cause key reading errors (Learn more at Learn more at https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F). Do you want to restore the backup (y/n) ")
+                cont = input("Could not find identifiers.txt but found a backup! It is heavily recommended that you do not regenerate your identifiers as it can cause key reading errors (Learn more at Learn more at https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables). Do you want to restore the backup (y/n) ")
                 if cont == 'y':
                     shutil.copyfile(backupfile, 'identifiers.txt')
                     print("Restored backup identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")   
@@ -147,20 +148,20 @@ if not os.path.exists('identifiers.txt'):
     with open('identifiers.txt', 'w') as f:
         fernet = Fernet(identifier)
         pubkey = fernet.encrypt(pubkeylink.encode()).decode()
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.close()
     with open ('/Users/' + os.getlogin() + '/Documents/akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
-        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.write('PRIVATE KEY IDENTIFIER\n')
         f.write(privkey)
         f.write('\n\nPUBLIC KEY IDENTIFIER\n')
         f.write(pubkey)
-        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/What-are-the-AKoDAuth-Identifiers%3F ----\n\n")
+        f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
         f.close()
     print("Generated identifiers. Please do not share it with anyone. It is recommended that you do not regenerate it.")
     exit()
