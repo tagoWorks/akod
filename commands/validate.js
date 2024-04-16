@@ -41,21 +41,43 @@ module.exports = {
       return;
     }
     cooldowns[userId] = Date.now();
-    if (!/^[a-zA-Z0-9]+$/.test(accname) || /\s/.test(accname)) {
+    if (!/^[a-zA-Z0-9]+$/.test(accname) || /\s/.test(accname) || accname.length <= 5 || accname == accpass) {
       await interaction.reply({
-        content: `Invalid account name. Account name should only contain letters and numbers and should not contain any spaces.`,
+        content: `**Invalid account name. Account name should:**\n> Only contain letters, numbers, and symbols *(no spaces)*\n> Be more than 5 characters\n> Not be the same as your password`,
         ephemeral: true,
       });
       delete cooldowns[userId];
       return;
     }
-
+    if (accpass.length <= 6) {
+      await interaction.reply({
+        content: `**Invalid account password. Password should:**\n> Be more than 6 characters`,
+        ephemeral: true,
+      });
+      delete cooldowns[userId];
+      return;
+    }
     // Path to the assets folder from the root
     const assetsFolderPath = path.join(__dirname, '..', 'assets');
 
     // Path to all valid licenses text file in the assets folder
     const licenseFilePath = path.join(assetsFolderPath, 'validkeys.txt');
 
+    
+    const blacklistFilePath = path.join('.', 'blacklist.txt');
+    fs.readFile(blacklistFilePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading blacklist file:', err);
+        return interaction.reply({ content: 'Error reading blacklist file. Please try again later.', ephemeral: true });
+      }
+      let blacklist = data.split('\n').map(line => line.trim());
+      if (blacklist.includes(accname)) {
+        delete cooldowns[userId]
+        return interaction.reply({
+          content: `Sorry, but "${accname}" is blacklisted. Please contact support for further assistance.`,
+          ephemeral: true,
+        });
+      }
     fs.readFile(licenseFilePath, 'utf8', (err, data) => {
       if (err) {
         console.error('Error reading key file:', err);
@@ -115,6 +137,7 @@ module.exports = {
       } else {
         interaction.reply({ content: 'If your key is valid your login will be created! Please wait about 15-20 seconds for the servers to update before use.', ephemeral: true });
       }
+    });
     });
   }
 };

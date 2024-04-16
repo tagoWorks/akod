@@ -55,6 +55,7 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
    * After a few minutes check your Netlify link and verify AKoD can read and write
 7. Input your custom keys in the `validkeys.txt` file
    * Remember to make a new line for each new activation key
+8. Modify the `blacklist.txt` file to add any additional blocked usernames, like your username or other developers.
 
 # Implement AKoD in your code 💻
 For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
