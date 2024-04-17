@@ -3,21 +3,15 @@
     </a>
     <br />
 
-   ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/akod)
-   ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/akod)
-   ![GitHub](https://img.shields.io/github/license/tagoworks/akod)
-   
-![Example](https://media.discordapp.net/attachments/1092315227057561630/1229117980449837098/Group_2.png?ex=662e8452&is=661c0f52&hm=0f28751f0b32612ed588d1a6463aab57f29f58fc1bc0dd0205b9ac63afdfc967&=&format=webp&quality=lossless)
-
 </div>
 
 > Activating Keys on Discord is a free and multi-layered encrypted user key authentication tool for your code. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. AKoD allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate AKoD into your software, import the AKoDAuth package and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD is open-source, and you're encouraged to make your own modifications to suit your needs.
 
 
-# Get Started with AKoD 🚀
-For better detailed intructions visit the revisioned [wiki page](https://github.com/tagoworks/akod/wiki/getting-started)
-or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
+# Get Started with AKoD
+You should probably only use this build if you know what you are doing. This contains features that are not yet complete or don't work at all. **Continue at your own risk**
 
+**NOTE: These instructions may not accurate to the active developing build of AKoD!**
 
 ## Setup webserver
 1. Create a new private GitHub repo
@@ -57,7 +51,7 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
    * Remember to make a new line for each new activation key
 8. Modify the `blacklist.txt` file to add any additional blocked usernames, like your username or other developers.
 
-# Implement AKoD in your code 💻
+# Implement AKoD in your code
 For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
 1. Download the [Activating Keys Auth Package](https://github.com/t-a-g-o/akodauth)
    ```sh
@@ -92,7 +86,7 @@ For now AKoD can only be used for Python scripts. If you want to contribute and 
 
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
-# Discord Bot Usage 🤖
+# Discord Bot Usage
 
 ## Member usage
 Users in your Discord server can validate their keys by running the command "/validate ACTIVATION-KEY LOGIN PASSWORD".
@@ -107,7 +101,7 @@ As the owner, you can remove users cooldowns, add keys, and REMOVE accounts that
 **Note:**
 To remove added keys, or to add keys in bulk you need to manually edit the `assets/validkeys.txt` file, making sure that the last key ends with pressing the ENTER key to go down a line.
 
-# Roadmap 🛣️
+# Roadmap
 - [x] Rename project (VLoD -> AKoD)
 - [x] Convert bot commands to discord slash applications
 - [x] Add checks for invalid account names
@@ -117,7 +111,9 @@ To remove added keys, or to add keys in bulk you need to manually edit the `asse
 - [ ] Expand on languages to use AKoDAuth
 - [ ] Add expiring method
 
-# License & Information 📃
+# License & Information
 This project is published under the [MIT license](./LICENSE)
 
 If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
+
+Make sure to check out the working version of [AKoD](https://github.com/tagoworks/akod)!
