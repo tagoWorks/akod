@@ -6,7 +6,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 
 # Directory to clone the repo to
-clonerepoat = '/Users/' + os.getlogin() + '/Documents/GitHub/'
+clonerepoat = '/Users/santiagobilleci/GitHub/'
 
 #-------------------------------------------------------------------------------------
 #              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
@@ -76,8 +76,9 @@ def process_new_folders(new_folders):
                         file_path = os.path.join(folder_path, file)
                         encrypted_data = encrypt_file_pass(file_path)
                         encrypted_file_path = os.path.join(target_folder_path, file)
-                        with open(encrypted_file_path, 'wb') as f:
-                            f.write(encrypted_data)
+                        with open(encrypted_file_path + '.html', 'w') as f:
+                            f.write(f"""<!DOCTYPE html>\n<html>\n<head>\n<meta http-equiv = "refresh" content = "0.0; url = {pubkeylink + 'check'}" />\n</head>\n<body>\n<div style="display:none;">{encrypted_data}</div>\n</body>\n</html>""")
+                            os.remove(encrypted_file_path)
                 commit_changes(f"Account '{folder}' created with encrypted license data.")
                 print(f"'{folder}' created an account with an encrypted license.")
             except Exception as e:
