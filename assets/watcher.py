@@ -6,7 +6,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 
 # Directory to clone the repo to
-clonerepoat = '/Users/santiagobilleci/GitHub/'
+clonerepoat = 'C:\Users/' + os.getlogin() + '\Documents\GitHub'
 
 #-------------------------------------------------------------------------------------
 #              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
