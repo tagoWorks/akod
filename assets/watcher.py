@@ -6,11 +6,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
 
 # Directory to clone the repo to
-<<<<<<< HEAD
-clonerepoat = 'C:/Users/' + os.getlogin() + '/Documents\GitHub'
-=======
 clonerepoat = '/Users/' + os.getlogin() + '/Documents/GitHub/'
->>>>>>> parent of a71fe00 (Update watcher.py)
 
 #-------------------------------------------------------------------------------------
 #              ONLY CHANGE IF YOU KNOW WHAT YOU ARE DOING!!
