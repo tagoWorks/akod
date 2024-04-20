@@ -60,7 +60,7 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 # Implement AKoD in your code 💻
 For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
 1. Create a new folder and name it "auth"
-2. Open terminal and download AKoDAuth
+2. Open the folder in terminal and download AKoDAuth
    ```sh
    curl https://raw.githubusercontent.com/t-a-g-o/akodauth/main/AKoDAuth/__init__.py -o __init__.py
    ```
