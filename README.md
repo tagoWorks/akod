@@ -11,7 +11,7 @@
 
 </div>
 
-> Activating Keys on Discord is a free and multi-layered encrypted user key authentication tool for your code. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. AKoD allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate AKoD into your software, import the AKoDAuth package and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD is open-source, and you're encouraged to make your own modifications to suit your needs.
+> Activating Keys on Discord is a free and multi-layered encrypted user key authentication tool for your code. Built with JavaScript and Python, it utilizes GitHub and Netlify as licensing servers. AKoD allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and commits the changes to a GitHub repository hosted on Netlify for accessibility. To integrate AKoD into your software, create a free flask api, and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD is open-source, and you're encouraged to make your own modifications to suit your needs.
 
 
 # Get Started with AKoD 🚀
@@ -58,38 +58,7 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 8. Modify the `blacklist.txt` file to add any additional blocked usernames, like your username or other developers.
 
 # Implement AKoD in your code 💻
-For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Create a new folder and name it "auth"
-2. Open the folder in terminal and download AKoDAuth
-   ```sh
-   curl https://raw.githubusercontent.com/t-a-g-o/akodauth/main/AKoDAuth/__init__.py -o __init__.py
-   ```
-3. Import the functions to your main code
-   ```py
-   import auth
-   ```
-4. Define your private & public key (`assets/identifiers.txt`)
-   ```sh
-   auth.privatekey('hehSUUXf3m33ns9Hwenj')
-   auth.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
-   ```
-5. Define the activation key and input username and password (save the activation key to a text file and read from it to log in faster, see the `example.py`)
-
-   *username and password can be anything*
-   ```py
-   auth.setActivationKey('ABCD-1234-ABCD-1234')
-   username = input("Enter your username: ")
-   password = input("Enter your password: ")
-   ```
-6. Check if the login exists and the key is valid
-   ```py
-   if auth.isValid(username, password) == False:
-      print("Invalid login!")
-   else:
-      # Run your main code here
-   ```
-7. Package your code by creating it an executable, and make sure to include the auth directory 
-
+...
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
 # Discord Bot Usage 🤖
