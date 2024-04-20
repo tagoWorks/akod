@@ -57,7 +57,21 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
    * Remember to make a new line for each new activation key
 8. Modify the `blacklist.txt` file to add any additional blocked usernames, like your username or other developers.
 
-# Implement AKoD in your code 💻
+# Setting up your own free API 🛜
+
+1. Go to pythonanywhere.com and create a free account to host the auth api
+2. Create a new web app
+3. Select "Flask" web framework
+4. Select "Python 3.10"
+5. Remove the "mysite" from path and rename the py to something like "auth"
+6. Create the webapp
+7. Scroll down until you see "Source code", and click "Go to directory"
+8. Click on the 'auth.py' file you created
+9. Copy the contents of the [AKoDAuth flask API], and paste it in for the file
+10. Save the changes on the top right
+11. Reload your webapp
+
+# Implement AKoDAuth into your code 💻
 ...
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
