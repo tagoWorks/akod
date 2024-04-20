@@ -59,20 +59,21 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 
 # Implement AKoD in your code 💻
 For now AKoD can only be used for Python scripts. If you want to contribute and attempt to expand please feel free.
-1. Download the [Activating Keys Auth Package](https://github.com/t-a-g-o/akodauth)
+1. Create a new folder and name it "auth"
+2. Open terminal and download AKoDAuth
    ```sh
-   pip install AKoDAuth
+   curl https://raw.githubusercontent.com/t-a-g-o/akodauth/main/AKoDAuth/__init__.py -o __init__.py
    ```
-2. Import the package to your main code
+3. Import the functions to your main code
    ```py
-   import AKoDAuth as auth
+   import auth
    ```
-3. Define your private & public key (`assets/identifiers.txt`)
+4. Define your private & public key (`assets/identifiers.txt`)
    ```sh
    auth.privatekey('hehSUUXf3m33ns9Hwenj')
    auth.publicserverkey('jweikAAAA-jemef-efj-_eneiebeufu_38h')
    ```
-4. Define the activation key and input username and password (save the activation key to a text file and read from it to log in faster, see the `example.py`)
+5. Define the activation key and input username and password (save the activation key to a text file and read from it to log in faster, see the `example.py`)
 
    *username and password can be anything*
    ```py
@@ -87,8 +88,7 @@ For now AKoD can only be used for Python scripts. If you want to contribute and 
    else:
       # Run your main code here
    ```
-7. Obfuscate your code (optional)
- In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced. Additionally, if you create an executable from your python code it will be difficult to decompile.
+7. Package your code by creating it an executable, and make sure to include the auth directory 
 
 
 If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
