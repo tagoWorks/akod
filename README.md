@@ -6,8 +6,6 @@
    ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/akod)
    ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/akod)
    ![GitHub](https://img.shields.io/github/license/tagoworks/akod)
-   
-![Example](https://media.discordapp.net/attachments/1092315227057561630/1229117980449837098/Group_2.png?ex=662e8452&is=661c0f52&hm=0f28751f0b32612ed588d1a6463aab57f29f58fc1bc0dd0205b9ac63afdfc967&=&format=webp&quality=lossless)
 
 </div>
 
