@@ -96,7 +96,8 @@ View the 'example.py' file to see how to set all the needed variables to your ap
    if response.text == "VALID":
      print("Hello, World!")
     ```
-
+5. Obfuscate your code (optional)
+ In order to hide your private key and licensing website link, I recommend you obfuscate your code with a python obfuscator. [Hyperion](https://github.com/billythegoat356/Hyperion) is very advanced. Additionally, if you create an executable from your python code it will be difficult to decompile.
 If your still having issues join the [discord server](https://tago.works/discord)!
 
 # Discord Bot Usage 🤖
