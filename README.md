@@ -83,7 +83,7 @@ View the 'example.py' file to see how to set all the needed variables to your ap
    ```
 2. Create a way to input activation key, username, and login
    ```py
-   activationkey =input ("Enter activation key: ")
+   activationkey = input("Enter activation key: ")
    username = input("Enter username: ")
    password = input("Enter password: ")
 3. Creata a post request to your API to check for the account credentials
