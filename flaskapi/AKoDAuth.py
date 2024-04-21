@@ -94,7 +94,7 @@ def set_activation_key():
         return "Activation key is required", 400
 @app.route('/privatekey', methods=['POST'])
 def set_private_key():
-    key = request.form.get('privatekey')
+    key = request.form.get('key')
     if key:
         privatekey(key)
         return "Private key set successfully"
