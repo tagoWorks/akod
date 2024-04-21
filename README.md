@@ -17,6 +17,7 @@
 For better detailed intructions visit the revisioned [wiki page](https://github.com/tagoworks/akod/wiki/getting-started)
 or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 
+#### ⚠️ Please follow best practices for security when handling sensitive information!!!
 
 ## Setup webserver
 1. Create a new private GitHub repo
