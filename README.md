@@ -59,22 +59,46 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 
 # Setting up your own free API 🛜
 
-1. Go to pythonanywhere.com and create a free account to host the auth api
+1. Go to [pythonanywhere.com](https://pythonanywhere.com/) and create a free account to host the auth api
 2. Create a new web app
-3. Select "Flask" web framework
-4. Select "Python 3.10"
-5. Remove the "mysite" from path and rename the py to something like "auth"
+   * Select "Flask" web framework
+   * Select "Python 3.10"
+5. Rename the py file to something like "auth"
 6. Create the webapp
 7. Scroll down until you see "Source code", and click "Go to directory"
 8. Click on the 'auth.py' file you created
-9. Copy the contents of the [AKoDAuth flask API], and paste it in for the file
+9. Copy the contents of the the python file in the "flaskapi" folder, and paste it into the file for pythonanywhere
 10. Save the changes on the top right
 11. Reload your webapp
 
 # Implement AKoDAuth into your code 💻
-...
+View the 'example.py' file to see how to set all the needed variables to your api and check for a valid login!
 
-If your having issues check out the example.py or join the [discord server](https://tago.works/discord)
+1. Set and post your private and public key
+   ```py
+   private_key = "private key from identifiers.txt"
+   publicserverkey = "public key from identifiers.txt"
+   requests.post('http://yourusername.pythonanywhere.com/privatekey', data={'privatekey': private_key})
+   requests.post('http://yourusername.pythonanywhere.com/publickey', data={'link': publicserverkey})
+   ```
+2. Create a way to input activation key, username, and login
+   ```py
+   activationkey =input ("Enter activation key: ")
+   username = input("Enter username: ")
+   password = input("Enter password: ")
+3. Creata a post request to your API to check for the account credentials
+   ```py
+   requests.post('http://yourusername.pythonanywhere.com/setactivationkey', data={'key': activationkey})
+   response = requests.post('http://yourusername.pythonanywhere.com/validate', data={'username': username, 'password': password})
+   ```
+4. If the response is "VALID", start your code!
+   ```py
+   if response.text == "VALID":
+     print("Hello, World!")
+    ```
+
+If your still having issues join the [discord server](https://tago.works/discord)!
+
 # Discord Bot Usage 🤖
 
 ## Member usage
@@ -97,6 +121,7 @@ To remove added keys, or to add keys in bulk you need to manually edit the `asse
 - [x] Add catches for when an invalid folder is created
 - [x] Add public key functionality
 - [X] Add password function
+- [X] Add custom API
 - [ ] Expand on languages to use AKoDAuth
 - [ ] Add expiring method
 
