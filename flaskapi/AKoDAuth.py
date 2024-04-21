@@ -1,14 +1,24 @@
-
-
-
-
-
 #
 #
 #   AKoD Authentication Flask API
 #   For more help visit https://github.com/tagoworks/akod/wiki
 #
 #
+
+
+# Change the custom location of the database on the webserver
+# Only the name of the directory is needed, no slashes
+customloco = 'none'
+
+
+# Database service type. Usually only change if your not using Netlify
+# If you are self hosting and using Apache, set this to 'webdav'
+svtype = 'default'
+
+# Change the host IP of the Flask API when using webdav
+# Recommended to not change this unless you know what you are doing
+usecustomhost = '0.0.0.0'
+
 
 
 
@@ -21,23 +31,16 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.fernet import Fernet
-
 app = Flask(__name__)
-
 key = b''
 publickey = ''
 activationkey = ''
-customloco = 'none'
-svtype = 'default'
-
 def setActivationKey(string):
     global activationkey
     activationkey = string
-
 def privatekey(encrypted_key):
     global privkey
     privkey = bytes(encrypted_key, 'utf-8')
-
 def publicserverkey(link):
     global publickey
     identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
@@ -47,11 +50,13 @@ def publicserverkey(link):
         return "Invalid identifier", 400
     publickey = link
     return "Public key set successfully", 200
-
 def isValid(login, password):
     global publickey, activationkey, privkey
     if svtype == 'default':
-        url = publickey + login + '/check'
+        if customloco == 'none':
+            url = publickey + login + '/check'
+        else:
+            url = publickey + '/' + customloco + '/' + login + '/check'
         response = requests.get(url)
     elif svtype == 'webdav':
         if customloco == 'none':
@@ -59,23 +64,15 @@ def isValid(login, password):
         else:
             url = publickey + customloco + '/' + login + '/check'
         response = requests.post(url)
-
     if response.status_code == 404:
         return False
-
     try:
         encrypted_data = response.content
         iv = b'JMWUGHTG78TH78G1'
         final_encrypted_data = encrypted_data[len(iv):]
         password = password.encode()
         salt = b'352384758902754328957328905734895278954789'
-        kdf = PBKDF2HMAC(
-            algorithm=hashes.SHA256(),
-            length=32,
-            salt=salt,
-            iterations=100000,
-            backend=default_backend()
-        )
+        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(),length=32,salt=salt,iterations=100000,backend=default_backend())
         password_key = kdf.derive(password)
         cipher_password = Cipher(algorithms.AES(password_key), modes.CFB(iv), backend=default_backend())
         decryptor_password = cipher_password.decryptor()
@@ -87,7 +84,6 @@ def isValid(login, password):
         return final_decrypted_data == activationkey
     except:
         return False
-
 @app.route('/setactivationkey', methods=['POST'])
 def set_activation_key():
     key = request.form.get('key')
@@ -96,7 +92,6 @@ def set_activation_key():
         return "Activation key set successfully"
     else:
         return "Activation key is required", 400
-
 @app.route('/privatekey', methods=['POST'])
 def set_private_key():
     key = request.form.get('privatekey')
@@ -105,7 +100,6 @@ def set_private_key():
         return "Private key set successfully"
     else:
         return "Private key is required", 400
-
 @app.route('/publickey', methods=['POST'])
 def set_public_key():
     link = request.form.get('link')
@@ -114,12 +108,10 @@ def set_public_key():
         return response, status_code
     else:
         return "Public key link is required", 400
-
 @app.route('/validate', methods=['POST'])
 def is_valid_route():
     user = request.form.get('username')
     password = request.form.get('password')
-
     if not user or not password:
         return "Login and password are required", 400
 
@@ -128,6 +120,8 @@ def is_valid_route():
         return "VALID", 200
     else:
         return "INVALID", 401
-
 if __name__ == '__main__':
-    app.run(debug=False)
+    if svtype == 'default':
+        app.run(debug=False)
+    elif svtype == 'webdav':
+        app.run(host=usecustomhost, debug=False)
