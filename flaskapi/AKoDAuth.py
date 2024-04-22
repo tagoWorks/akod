@@ -102,7 +102,7 @@ def set_private_key():
         return "Private key is required", 400
 @app.route('/publickey', methods=['POST'])
 def set_public_key():
-    link = request.form.get('link')
+    link = request.form.get('key')
     if link:
         response, status_code = publicserverkey(link)
         return response, status_code
