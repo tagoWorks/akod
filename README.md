@@ -19,6 +19,10 @@ or watch the [YouTube video!](https://youtu.be/Wtpl7a_08jE)
 
 #### ⚠️ Please follow best practices for security when handling sensitive information!!!
 
+<a href="https://github.com/tagoworks/akod/wiki/Use-Flare-Instead-of-AKoD">
+  <img src="https://cdn.discordapp.com/attachments/1092315227057561630/1232519280294367274/warn.png?ex=6629c087&is=66286f07&hm=7115fd1acd4e294ef16f759ef783b6b4c623adef8fa5fa8459e72d82237a4195&" alt="WARN" width="479.2" height="148.8">
+</a>
+
 ## Setup webserver
 1. Create a new private GitHub repo
    
