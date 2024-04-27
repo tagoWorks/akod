@@ -131,4 +131,4 @@ To remove added keys, or to add keys in bulk you need to manually edit the `asse
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
 
-If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
+If you are interested in working together, or want to get in contact with me please email me at santiago@tago.works
