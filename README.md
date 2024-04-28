@@ -80,8 +80,8 @@ View the 'example.py' file to see how to set all the needed variables to your ap
    ```py
    private_key = "private key from identifiers.txt"
    publicserverkey = "public key from identifiers.txt"
-   requests.post('http://yourusername.pythonanywhere.com/privatekey', data={'privatekey': private_key})
-   requests.post('http://yourusername.pythonanywhere.com/publickey', data={'link': publicserverkey})
+   requests.post('http://yourusername.pythonanywhere.com/privatekey', data={'key': private_key})
+   requests.post('http://yourusername.pythonanywhere.com/publickey', data={'key': publicserverkey})
    ```
 2. Create a way to input activation key, username, and login
    ```py
